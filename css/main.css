@@ -1,0 +1,487 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*
+ * Globals
+ */
+@font-face {
+    font-family: 'OpenSans-Regular';
+    src: url('../fonts/OpenSans-Regular.ttf');
+}
+@font-face {
+    font-family: 'OpenSans-Semibold';
+    src: url('../fonts/OpenSans-Semibold.ttf');
+}
+@font-face {
+    font-family: 'OpenSans-Bold';
+    src: url('../fonts/OpenSans-Bold.ttf');
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: 'OpenSans-Regular', Verdana, Geneva, sans-serif;
+  color: #666;
+  margin-bottom: 0 !important;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+h1, .h1 {
+  margin-top: 0;
+  font-family: 'OpenSans-Bold';
+  font-weight: normal;
+  color: #141414;
+  font-size: 30px;
+}
+
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  margin-top: 0;
+  font-family: 'OpenSans-Semibold';
+  font-weight: normal;
+  color: #666666;
+}
+
+h2, .h2, {
+	font-size: 19px;
+}
+
+h3, .h3, {
+	font-size: 16px;
+}
+
+/*
+ * Override Bootstrap's default container.
+ */
+
+@media (min-width: 1200px) {
+  .container {
+    width: 970px;
+
+  }
+}
+
+
+/* MASTHEADS FOR TOP ELEMENTS */
+
+.home-masthead {
+ 	 background-color: #141414;
+	  min-height: 30px; 
+
+}
+.home-main {
+    position: relative;
+    width: 100%;
+	margin: 2px;
+	padding-top: 2px;
+}
+
+
+.home-glyph {
+	background-color: transparent;
+	color: #fff;
+	float:right;
+    vertical-align: middle;	
+	margin-top: 3px;
+    height: 20px;
+    width: 20px;
+}
+
+
+.logo-masthead {
+    background-color: #fff;
+	min-height: 90px;
+	border-bottom: #141414 solid 5px;
+  /*-webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+          box-shadow: inset 0 -2px 5px rgba(0,0,0,.1); */
+}
+
+.nav-main {
+    position: relative;
+    width: 100%;
+}
+
+nav ul {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-main__logo {
+    float: left;
+    padding: 10px 0 10px 0;
+	width: 20%;
+	margin: 2px;
+    list-style: none;
+}
+.logo {
+    background-color: transparent;
+    background-image: url(../images/2mountain-logo.png);
+    background-repeat: no-repeat;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;
+    color: transparent;
+    height: 114px;
+    width: 279px;
+	left: 0;
+}
+
+/*MAIN CONTENTS AREA ON LEFT*/
+
+.branch-main {
+	padding-bottom: 25px;
+}
+
+.branch-header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.branch-title {
+  margin-top: 30px;
+  margin-bottom: 0;
+  font-weight: normal;
+}
+.branch-subheading {
+	color: #666;
+	font-size: 19px;
+}
+.branch-form {
+}
+.branch-form-btn {
+  font-family: 'OpenSans-SemiBold';
+  display: inline-block;
+  padding: 12px 15px;
+  margin-bottom: 0;
+  font-size: 1em;
+  color: #fff;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-color: #a5af7a;
+  border: none;
+  border-radius: 3px;
+}
+.branch-form-btn:hover {
+	color: #1d3632;	
+}
+.branch-form-select {
+	min-width: 260px;
+	max-width: 100%;
+	background-color: #eee;
+	border: 1px solid #ddd;
+	margin-bottom: 15px;
+}
+
+/*..SEARCH RESULTS LIST OF BRANCHES */
+
+.search-results {
+	padding-bottom: 20px;
+}
+.search-results-header {
+	margin: 20px 0;
+}
+.search-results-branchname {
+	color: #a5af7a;
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 2px;
+}
+.search-results-list {
+	margin-bottom: 0;
+}
+.search-results-maplink {
+	color: #a5af7a;
+	font-weight: bold;
+	text-decoration:underline;
+}
+
+/* ..CLICK TO CALL - PHONING PG */
+.ph-exp {
+		padding: 10px 20px;
+}
+
+.ph-exp h3 {
+	font-size: 19px;
+}
+
+.ph-exp h4 {
+	font-size: 17px;
+	padding-bottom: 20px;
+}
+
+.ph-exp a {
+	color: #72864b;
+}
+
+/* ..SEARCH RESULTS - MAP AND BRANCH DETAILS */
+
+.map-sizer {
+	width: 100%;
+	height: 300px;
+	background-color: #aaa;
+	margin-bottom: 15px;
+	padding: 10px;
+}
+.map-form-btn {
+  font-family: 'OpenSans-SemiBold';
+  display: inline-block;
+  padding: 12px 15px;
+  margin-bottom: 25px;
+  font-size: 1em;
+  color: #fff;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-color: #a5af7a;
+  border: none;
+  border-radius: 3px;
+}
+.map-form-btn:hover {
+	color: #1d3632;	
+}
+
+
+/* RIGHT SIDEBAR LAYOUT */
+
+/*.branch-main {
+  font-size: 18px;
+  line-height: 1.5;
+}*/
+
+/* ..ORANGE CALL-BACK FORM */
+.sidebar-module {
+  padding: 15px;
+  margin: 0 -15px 10px;
+}
+.sidebar-module-inset {
+  padding: 15px;
+  background-color: #1e3632;
+}
+.sidebar-module-inset p:last-child,
+.sidebar-module-inset ul:last-child,
+.sidebar-module-inset ol:last-child {
+  margin-bottom: 0;
+}
+.sidebar {
+	margin-top: 3;
+	font-family: 'OpenSans-Regular', Verdana, Geneva, sans-serif;
+ 	font-weight: normal;
+	color: #fff;		
+}
+.sidebar h2 {
+	color: #FFF;
+	font-weight: lighter;
+	padding-bottom: 10px;
+	font-size: 24px;
+}
+.sidebar-form {
+	background-color: #1e3632;
+	border: none;
+}
+.sidebar-select {
+    font-size: 1em;
+}
+.sidebar-options {
+	font-size: small;
+}
+.sidebar-caret {
+  color: #fff;
+}
+.sidebar-btn{
+  font-family: 'OpenSans-SemiBold';
+  display: inline-block;
+  padding: 8px 15px;
+  width: 100%;
+  margin-bottom: 0;
+  font-size: 1.35em;
+  color: #fff;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-color: #a5af7a;
+  border: 1px solid #a5af7a;
+  border-radius: 1px;
+}
+.sidebar-btn:hover {
+	background-color: #cbcfbc;
+}
+.universal-number{
+	color: #1e3632;
+	text-align:center;
+	font-size: 18px;
+}
+
+.ph-glyph:hover {
+	text-decoration: none !important;
+}
+
+
+/* FOOTER*/
+
+.branch-footer {
+	padding: 40px 0;
+	color: #72864b;
+	text-align: left;
+	background-color: #1d3632;
+	height: auto !important;
+	height: 100%;
+
+	font-size: 1em;	 
+}
+.branch-footer p {
+	padding-top: 20px;
+
+}
+.branch-footer p:last-child {
+	padding-top: 10px;
+	margin-bottom: 10% !important;
+	font-size: 0.77em;
+}
+
+
+.underlogo ul {
+    border: 0;
+    margin-top: 20px;
+    padding: 5px;
+    list-style: none;
+}
+
+.underlogo__logo {
+    float: left;
+    padding: 10px 0 10px 0;
+	width: 20%;
+	margin: 2px;
+    list-style: none;
+}
+
+.underwritten-logo {
+    background-color: transparent;
+    background-image: url(../images/logo_liberty.png);
+    background-repeat: no-repeat;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;
+    color: transparent;
+    height: 105px;
+    width: 240px;
+	left: 0;
+}
+
+/*..SOCIAL MEDIA ELEMENTS IN FOOTER*/
+
+nav-social {
+    border: 0;
+    margin-left: 30px;
+    list-style: none;
+	height: 40px;
+}
+.nav-social li {
+    list-style: none;
+	display: list-item;
+    margin-bottom: 30px;
+}
+.nav-social--facebook, .nav-social--googleplus, .nav-social--instagram, .nav-social--linkedin, .nav-social--twitter {
+    float: left;
+    height: 40px;
+    margin-left: 10px;
+    padding-top:0;	
+}
+.icon--facebook {
+    background-color: transparent;
+ 	background-image: url(../images/sprite.svg); 
+ 	background-repeat: no-repeat;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;	
+    color: transparent;	
+    height: 32px;
+    width: 32px;
+    background-position: -40px -80px;
+}
+.icon--linkedin {
+    background-color: transparent;
+ 	background-image: url(../images/sprite.svg); 	
+	 	background-repeat: no-repeat;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;	
+    color: transparent;			
+    height: 32px;
+    width: 32px;
+    background-position: -160px -80px;
+}
+.icon--twitter {
+    background-color: transparent;
+ 	background-image: url(../images/sprite.svg); 
+ 	background-repeat: no-repeat;	
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;	
+    color: transparent;			
+    height: 32px;
+    width: 32px;
+    background-position: 0 -80px;
+}
+.icon--googleplus {
+    background-color: transparent;
+ 	background-image: url(../images/sprite.svg); 
+ 	background-repeat: no-repeat;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;	
+    color: transparent;				
+    height: 32px;
+    width: 32px;
+    background-position: -80px -80px;
+}
+.icon--instagram {
+    background-color: transparent;
+ 	background-image: url(../images/sprite.svg); 	
+ 	background-repeat: no-repeat;	
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;	
+    color: transparent;		
+    height: 32px;
+    width: 32px;
+    background-position: -120px -80px;
+}
+
