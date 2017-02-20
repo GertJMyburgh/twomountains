@@ -14,7 +14,7 @@
         <meta name="author" content="">
         <link rel="icon" href="images/favicon.ico">
 
-        <title>Hollard Branch Locator</title>
+        <title>Two Mountains Branch Locator</title>
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
