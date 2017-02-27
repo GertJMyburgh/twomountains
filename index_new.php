@@ -14,7 +14,7 @@
         <meta name="author" content="">
         <link rel="icon" href="images/favicon.ico">
 
-        <title>Hollard Branch Locator</title>
+        <title>Two Mountains Branch Locator - Search</title>
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -26,20 +26,22 @@
         <link href="css/main.css" rel="stylesheet">
 
         <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <!--[if lt IE 9]>
+        <script src="../../assets/js/ie8-responsive-file-warning.js"></script>
+        <![endif]-->
         <!-- <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <!--[endif]-->
-        
+        <!-- <![endif] -->
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-            
+
         <script type="text/javascript">
-            
-            // <![CDATA[           
+
+            // <![CDATA[
             function Province() {
                 $('#province_placeholder').empty();
                 $('#province_placeholder').append("<option>Loading......</option>");
@@ -90,7 +92,7 @@
                     City(provinceid);
                 });
             });
-            
+
             function trimWhiteSpacesAll(str) {
                 return str.replace(/\s/g, "");
             }
@@ -116,8 +118,8 @@
             function validateForm() {
                 var a = document.forms["Form1"]["name"].value;
                 var c = document.forms["Form1"]["phoneNumber"].value;
-                var d = document.forms["Form1"]["products"].value;       
-                
+                var d = document.forms["Form1"]["products"].value;
+
                 // Strip any spaces in front or at the back
                 a = trimWhiteSpacesLeftRight(a);
                 document.forms["Form1"]["name"].value = a;
@@ -160,15 +162,15 @@
             }
 
             function validateFormSearch() {
-                var e = document.forms["Form2"]["province_placeholder"].value;       
-                var f = document.forms["Form2"]["city_placeholder"].value;       
-                
+                var e = document.forms["Form2"]["province_placeholder"].value;
+                var f = document.forms["Form2"]["city_placeholder"].value;
+
                 if (e=="0" || e=="") {
                     alert("Please select a province from the province dropdown list.");
                     document.forms["Form2"]["province_placeholder"].focus();
                     return false;
                 }
-                
+
                 if (f=="0" || f=="") {
                     alert("Please select a city from the city dropdown list.");
                     document.forms["Form2"]["city_placeholder"].focus();
@@ -189,10 +191,10 @@
                 var cCode     = CalcKeyCode(lchar);
 
                 /* Check if the keyed in character is a number
-                   do you want alphabetic UPPERCASE only ?
-                   or lower case only just check their respective
-                   codes and replace the 48 and 57
-                */
+                 do you want alphabetic UPPERCASE only ?
+                 or lower case only just check their respective
+                 codes and replace the 48 and 57
+                 */
 
                 if (cCode < 48 || cCode > 57 ) {
                     var myNumber = val.value.substring(0, (strLength) - 1);
@@ -219,6 +221,7 @@
 
                 return val.value;
             }
+
             function checkFieldOnBlurSearch(val) {
                 val.value = trimWhiteSpacesLeftRight(val.value);
                 if (val.value == "0") {
@@ -298,7 +301,7 @@
 
                 return returnString;
             }
-            
+
             function firePixelOnTelNrClick() {
                 // Google Code for Navigate Conversion Page
                 var google_conversion_id = 874349905;
@@ -308,38 +311,49 @@
                 var google_conversion_label = "9ePHCPnN8WkQ0Yr2oAM";
                 var google_remarketing_only = false;
 
-                var image = new Image(1,1); 
+                var image = new Image(1,1);
                 image.src = "//www.googleadservices.com/pagead/conversion/874349905/?label=9ePHCPnN8WkQ0Yr2oAM&amp;guid=ON&amp;script=0";
-           
+
                 //alert ("index - BB");
                 window.open("exe_analytics.html?value=index_TEL");
                 //alert ("index - CC");
-                
+
                 return true;
             }
-            
+
+            function handleOutboundLinkClicks(event) {
+                console.log("Outbound Link Clicked.................................");
+                ga('send', 'event', {
+                    eventCategory: 'Outbound Link',
+                    eventAction: 'click',
+                    eventLabel: event.target.href,
+                    transport: 'beacon'
+                });
+            }
+
         </script>
-        
+
     </head>
 
     <body>
 
-        <script>            
-            //alert ("index - AA");            
+        <script>
+            //alert ("index - AA");
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
             ga('create', 'UA-83544421-1', 'auto');
             ga('send', 'pageview');
         </script>
-        
+
         <!--TOP MASTHEAD CONTAINING HOME ICON LINKING BACK TO BRANCHES INDEX PG-->
         <div class="home-masthead">
             <div class="container">
                 <div class="row">
                     <nav class="home-main">
-                        <a class="home-icon" href="#">&nbsp;</a>
+                        <p class="home-glyph"><a href="#"><span class="glyphicon glyphicon-home" style="color:#fff;"></span></a>
+                        </p>
                     </nav>
                 </div>
             </div>
@@ -360,9 +374,10 @@
 
         <div class="container">
             <!--MAIN CONTENT SECTION ON LEFT INCLUDING BRANCHES SEARCH FORM-->
+
             <div class="col-lg-10 branch-header branch-title">
-                <h1>Hollard Branch Locator</h1>
-                <h3 class="branch-subheading">Find your nearest Hollard branch:</h3>
+                <h1>Two Mountains Branch Locator</h1>
+                <h3 class="branch-subheading">Find your nearest Two Mountains branch:</h3>
             </div>
 
             <div class="row">
@@ -370,20 +385,20 @@
                 <div class="col-sm-6 col-md-6 branch-main">
 
                     <form action="search-results.php" enctype="multipart/form-data" name="Form2" onsubmit="return validateFormSearch()"method="POST" class="form-inline">
-            
+
                         <div class="col-lg-5 col-md-5 col-sm-12 form-group form-control-adj">
                             <select class="form-control input-group branch-form-select" name="province_placeholder" id="province_placeholder" value="0" onblur="checkFieldOnBlurSearch(Form2.province_placeholder)" onfocus="cleanFieldOnFocusSearch(Form2.province_placeholder)" ></select>
                         </div>
-                        
-                        <div class="col-lg-5 col-lg-offset-2 col-md-5 col-md-offset-2 col-sm-12 form-group form-control-adj">                    
+
+                        <div class="col-lg-5 col-lg-offset-2 col-md-5 col-md-offset-2 col-sm-12 form-group form-control-adj">
                             <select class="form-control input-group branch-form-select" name="city_placeholder" id="city_placeholder" value="0" onblur="checkFieldOnBlurSearch(Form2.city_placeholder)" onfocus="cleanFieldOnFocusSearch(Form2.city_placeholder)"></select>
                         </div>
-                        
-                        <div class="col-lg-12 form-group branch-form">            
-                            <input type="submit" class="btn branch-form-btn" id="submit" value="SEARCH"/>                       
+
+                        <div class="col-lg-12 form-group branch-form">
+                            <input type="submit" class="btn branch-form-btn" id="search" value="SEARCH"/>
                         </div>
-                        
-                    </form>
+
+                    </form> <!--END OF SEARCH FORM-->
 
                 </div>
 
@@ -391,8 +406,8 @@
                 <div class="col-sm-4 col-sm-offset-2 branch-sidebar">
                     <div class="sidebar-module sidebar-module-inset sidebar">
                         <h2>Rather call me back please</h2>
-                        
-                        <form action="call_me_back.php" enctype="multipart/form-data" name="Form1" onsubmit="return validateForm()" method="POST">
+
+                        <form action="call-me-back.php" enctype="multipart/form-data" name="Form1" onsubmit="return validateForm()" method="POST">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="name" id="name" value="My Name" onblur="checkFieldOnBlur(Form1.name)" onfocus="cleanFieldOnFocus(Form1.name)" />
                             </div>
@@ -406,17 +421,19 @@
                                     <option value="Legal" class="sidebar-options">Legal</option>
                                     <option value="Life" class="sidebar-options">Life</option>
                                 </select>
-                            </div>                
-                            <div class="form-group">            
-                                <input type="submit" class=" sidebar-btn" id="submit" value="CALL ME BACK"/>                       
                             </div>
-                        </form>            
+                            <div class="form-group">
+                                <input type="submit" class=" sidebar-btn" id="please-call-me" value="Please Call Me!"/>
+                            </div>
+
+                        </form>
+
                     </div>
 
                     <!--HOLLARD CALL DIRECT NUMBER-->
                     <div class="sidebar-module">
-                        <!-- <h3 class="universal-number">Or call us: 0800 601 016</h3> -->
-                        <h3 class="universal-number"><a href="tel:0800601016" onClick="firePixelOnTelNrClick();" >Or call us: 0800 601 016</a></h3>
+                        <a href="click-to-call.html" target="_blank" class="ph-glyph"><h3 class="universal-number"><span
+                                class="glyphicon glyphicon-phone-alt"></span> Or call us directly!</h3></a>
                     </div>
 
                 </div><!-- /.branch-sidebar -->
@@ -427,46 +444,38 @@
 
         <!--FOOTER-->
         <footer class="branch-footer">
+
             <div class="container">
+
                 <div class="row">
-                    <div class="col-sm-4 col-sm-push-8 branch-footer-social">
+                    <div class="col-sm-4">
+                        <p>
+                            Two Mountains Holdings &copy; 2017 <span style="color:#fff;">- FSP: 8706</span>
+                        </p>
+                    </div>
+                    <div class="col-sm-3 col-sm-push-5 branch-footer-social">
                         <ul class="nav-social">
                             <li class="nav-social--facebook">
-                                <a href="https://www.facebook.com/HollardInsurance/?fref=ts" target="_blank"><i class="icon--facebook">&nbsp;</i></a>
-                            </li>
-                            <li class="nav-social--linkedin">
-                                <a href="https://www.linkedin.com/company/hollard-insurance" target="_blank"><i class="icon--linkedin">&nbsp;</i></a>
-                            </li>
+                                <a href="http://www.facebook.com/TwoMountainsZA" target="_blank"><i class="icon--facebook">
+                                    &nbsp;</i></a></li>
                             <li class="nav-social--twitter">
-                                <a href="https://twitter.com/Hollard?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank"><i class="icon--twitter">&nbsp;</i></a>
-                            </li>
-                            <li class="nav-social--googleplus">
-                                <a href="https://plus.google.com/u/0/+HollardInsurance" target="_blank"><i class="icon--googleplus">&nbsp;</i></a>
-                            </li>
-                            <li class="nav-social--instagram">
-                                <a href="https://www.instagram.com/hollardgram/?hl=en" target="_blank"><i class="icon--instagram">&nbsp;</i></a>
+                                <a href="http://www.twitter.com/TwoMountainsZA" target="_blank"><i class="icon--twitter">
+                                    &nbsp;</i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 col-sm-push-8">
+                        <p><span style="font-size: 0.8em;">Underwritten by:</span></p>
+                        <ul class="underlogo">
+                            <li class="underwritten-logo">
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="container">
-                <div class="row">
-                    <p>
-                        The Hollard Insurance Company Ltd (Reg No. 1952/003004/06) is an authorised Financial Services Provider, and a member of the South African Insurance Association (SAIA).<br>
-                        Hollard Life Assurance Company (Reg. No. 1993/001405/06) is an authorised Financial Services Provider and a member of the Association for Savings and Investment South Africa (ASISA).<br> 
-                        Hollard Investment Managers (Reg. No. 1997/001696/07) is an authorised Financial Services Provider, operates as an investment manager and is a member of the Association for Savings and Investment South Africa (ASISA).<br>
-                        <br>
-                        Hollard is committed to high ethical standards of business. Hollard subscribes to the Ombudsman for Short-Term Insurance and the Ombudsman for Long-Term Insurance, and is subject to the jurisdiction of the FAIS Ombud. <br>
-                        <br>
-                        Hollard has developed and publicises its own Financial Crime Risk Management Policy as well as policies in support of the aims of the 
-                        Anti Money-Laundering Act and the Corrupt Activities Act.
-                    </p>
-                    <p>
-                        &copy; Copyright 2016 Hollard 
-                    </p>
-                </div>
-            </div>
+
         </footer>
 
         <!-- Bootstrap core JavaScript
@@ -475,8 +484,8 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
-        <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
-        
+        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
     </body>
+
 </html>

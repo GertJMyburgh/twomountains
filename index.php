@@ -14,7 +14,7 @@
         <meta name="author" content="">
         <link rel="icon" href="images/favicon.ico">
 
-        <title>Two Mountains Branch Locator</title>
+        <title>Hollard Branch Locator</title>
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -26,7 +26,9 @@
         <link href="css/main.css" rel="stylesheet">
 
         <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <!--[if lt IE 9]>
+        <script src="../../assets/js/ie8-responsive-file-warning.js"></script>
+        <![endif]-->
         <!-- <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -219,7 +221,7 @@
 
                 return val.value;
             }
-            
+
             function checkFieldOnBlurSearch(val) {
                 val.value = trimWhiteSpacesLeftRight(val.value);
                 if (val.value == "0") {
@@ -301,82 +303,22 @@
             }
             
             function firePixelOnTelNrClick() {
-				
-    		    // alert("PROD - firePixelOnTelNrClick");
-	           	// e.preventDefault();
-				
                 // Google Code for Navigate Conversion Page
-                // var google_conversion_id        = 874349905;
-                // var google_conversion_language  = "en";
-                // var google_conversion_format    = "3";
-                // var google_conversion_color     = "ffffff";
-                // var google_conversion_label     = "9ePHCPnN8WkQ0Yr2oAM";
-                // var google_remarketing_only     = false;
+                var google_conversion_id = 874349905;
+                var google_conversion_language = "en";
+                var google_conversion_format = "3";
+                var google_conversion_color = "ffffff";
+                var google_conversion_label = "9ePHCPnN8WkQ0Yr2oAM";
+                var google_remarketing_only = false;
 
                 var image = new Image(1,1); 
                 image.src = "//www.googleadservices.com/pagead/conversion/874349905/?label=9ePHCPnN8WkQ0Yr2oAM&amp;guid=ON&amp;script=0";
            
-                // alert ("index - BB");
-                // window.open("exe_analytics.html?value=search_TEL");
-                // alert ("index - CC");
-				
-		        console.log("PROD AA *************************** firePixelOnTelNrClick");
-				
-                // $.get("test_analytics.asp", function(data, status) {
-                //    alert("Data: " + data + "\nStatus: " + status);
-                // });
-
-                // Victor Geldenhuys from Thrive Online has registered these 2 values on Google Console
-                // 1. value=search_TEL
-                // 2. value=search_URL
-
-                // Ajax form 
-                // $.post('tel_analytics.php?value=search_TEL', $(this).serialize())                
-                
-                $.post('tel_analytics.php', $(this).serialize())                
-                    .done( function ( data ) {
-                        var json = $.parseJSON(data);
-                        console.log("PROD BB *************************** Ajax POST DATA = " + json);
-                        // alert("json: " + json);
-                        // console.log("Lead: " + json.lead);
-                    })                
-                    .fail( function () {
-                        console.log("PROD CC *************************** Ajax POST FAILED ...");
-                    });				
+                //alert ("index - BB");
+                window.open("exe_analytics.html?value=index_TEL");
+                //alert ("index - CC");
                 
                 return true;
-            }
-
-            // $("#test_call").on("click", firePixelOnTelNrClick_TEST);
-            
-            // $("#test_call").on("click", firePixelOnTelNrClick);
-            
-            // $("#test_call").click(function() {
-            //  firePixelOnTelNrClick();
-            // });
-            
-            function onTelNrClick2() {
-                console.log("PROD AA *************************** onTelNrClick");
-                
-                $.ajax({
-                    type: 'POST',
-                    url: 'tel_analytics.php',
-                    //contentType:"application/json; charset=utf-8",
-                    cache: false,
-                    dataType: 'json',
-                    success: function(data) {
-                        $('.result').html(data);
-                        alert('PROD BB *************************** Ajax GET SUCCESS ...');
-                    },
-                    error: function(xhr, desc, err) {
-                        console.log(xhr + "\n" + err + "\n" + desc);
-                    }
-                });
-            }
-            
-            function onTelNrClick() {
-                console.log("PROD AA *************************** Inside function onTelNrClick");
-                window.location.replace("exe_analytics.html?value=search_TEL");                
             }
 
             function handleOutboundLinkClicks(event) {
@@ -387,8 +329,8 @@
                     eventLabel: event.target.href,
                     transport: 'beacon'
                 });
-            }            
-            
+            }
+
         </script>
         
     </head>
@@ -396,16 +338,13 @@
     <body>
 
         <script>            
-            
-            //alert ("index.php - Executing Google Analytics");
-            
+            //alert ("index - AA");            
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
             ga('create', 'UA-83544421-1', 'auto');
             ga('send', 'pageview');
-            
         </script>
         
         <!--TOP MASTHEAD CONTAINING HOME ICON LINKING BACK TO BRANCHES INDEX PG-->
@@ -466,7 +405,7 @@
                     <div class="sidebar-module sidebar-module-inset sidebar">
                         <h2>Rather call me back please</h2>
                         
-                        <form action="call_me_back.php" enctype="multipart/form-data" name="Form1" onsubmit="return validateForm()" method="POST">
+                        <form action="call-me-back.php" enctype="multipart/form-data" name="Form1" onsubmit="return validateForm()" method="POST">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="name" id="name" value="My Name" onblur="checkFieldOnBlur(Form1.name)" onfocus="cleanFieldOnFocus(Form1.name)" />
                             </div>
@@ -484,15 +423,14 @@
                             <div class="form-group">            
                                 <input type="submit" class=" sidebar-btn" id="submit" value="CALL ME BACK"/>                       
                             </div>
-                        </form>            
+                        </form>
+
                     </div>
 
                     <!--HOLLARD CALL DIRECT NUMBER-->
                     <div class="sidebar-module">
-                        <!-- <h3 class="universal-number"><a href="tel:0800601016" onClick="firePixelOnTelNrClick();" >Or call us: 0800 601 016</a></h3> -->
-                        <!-- <div id="test_call"><h3 class="universal-number"><a href="tel:0800601016">Or call us: 0800 601 016</a></h3></div> -->
-                        <!-- <h3 class="universal-number"><a href="tel:0800601016" id="test_call" onClick="onTelNrClick()" >Or call us: 0800 601 016</a></h3> -->
-                        <h3 class="universal-number"><a href="tel:0800601016" id="test_call" onClick="handleOutboundLinkClicks()" >Or call us: 0800 601 016</a></h3> 
+                        <!-- <h3 class="universal-number">Or call us: 0800 601 016</h3> -->
+                        <h3 class="universal-number"><a href="tel:0800601016" onClick="firePixelOnTelNrClick();" >Or call us: 0800 601 016</a></h3>
                     </div>
 
                 </div><!-- /.branch-sidebar -->

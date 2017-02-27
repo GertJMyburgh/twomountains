@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -9,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="images/favicon.ico">
 
-    <title>Hollard Branch Locator</title>
+    <title>Two Mountains Branch Locator - Click To Call</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -70,14 +71,14 @@
        		<div class="col-sm-7 col-md-7 ph-exp">
 
 				<h3 class="ph-exp">If you'd rather chat with one of our consultants over the phone, we understand.</h3>
-                <h4 class="ph-exp">Simply dial <a href="0800123123">0800 123 123</a> and you'll be put right through!</h4>
+                <!-- <h3 class="universal-number-thankyou"><a href="tel:0800601016" id="test_call" onClick="firePixelOnTelNrClick();" >Or call us: 0800 601 016</a></h3> -->
+                <h4 class="ph-exp">Simply dial <a href="tel:0800123123">0800 123 123</a> and you'll be put right through!</h4>
 
-        
        		<div class="col-lg-6 branch-main">
 			 <!--BRANCHES SEARCH REDEFINE BUTTON - TO TAKE USER BACK TO THE SEARCH PAGE-->
-         	<form action="" method="" class="form-inline">
+         	<form action="index_new.php" method="post" class="form-inline">
                 <div class="col-lg-6 form-group branch-form">            
-                	<input type="search" class="btn branch-form-btn" id="submit" value="BACK TO SEARCH"/>                       
+                	<input type="submit" class="btn branch-form-btn" id="back-to-search" value="BACK TO SEARCH"/>
             	</div>
         	</form>  
             
@@ -92,7 +93,7 @@
         <div class="col-sm-4 col-sm-offset-1 branch-sidebar">
           <div class="sidebar-module sidebar-module-inset sidebar">
             <h2>Rather call me back please</h2>
-         	<form action="" method="">
+         	<form action="call-me-back.html" method="post">
         		<div class="form-group">
             		<!--<label for="name">Name</label>-->
                		<input type="text" class="form-control" id="name" value="Name*" />
@@ -102,17 +103,17 @@
                 	<input type="text" class="form-control" id="phoneNumber" value="Contact Number*" />    
                 </div>            
                 <div class="form-group">            
-                	<input type="submit" class=" sidebar-btn" id="submit" value="Please Call Me!"/>                       
+                	<input type="submit" class=" sidebar-btn" id="please-call-me" value="Please Call Me!"/>
             	</div>
         	</form>            
           </div>
-          
+
           <!--HOLLARD CALL DIRECT NUMBER-->
           <div class="sidebar-module">
-			<a href="click-to-call.html" target="_blank" class="ph-glyph"><h3 class="universal-number"><span class="glyphicon glyphicon-phone-alt"></span> Or call us directly!</h3></a>
-          </div>          
-          
-         
+			<h3 class="universal-number">&nbsp;</h3>
+          </div>
+
+
         </div><!-- /.branch-sidebar -->
 
       </div><!-- /.row -->
