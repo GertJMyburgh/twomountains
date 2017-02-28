@@ -13,7 +13,7 @@ date_default_timezone_set("Africa/Johannesburg");
 
 $dateTimeStamp = date('Y-m-d H:i:s');
 
-// TABLE = hollard_leads
+// TABLE = twomoun_leads
 // FIELD2 = nameSurname
 // FIELD3 = phoneNumber
 // FIELD4 = product
@@ -41,7 +41,7 @@ class Lead_api {
     }
     
     function insertLead($nameSurname, $phoneNumber, $product) {
-        $this->saveLead("hollard_leads", $nameSurname, $phoneNumber, $product);
+        $this->saveLead("twomoun_leads", $nameSurname, $phoneNumber, $product);
         $this->callURL($nameSurname, $phoneNumber, $product);
     }
 
@@ -58,7 +58,7 @@ class Lead_api {
         }
 
         try {
-            $stmt = $pdo->prepare("SELECT count(*) AS totalRecords FROM hollapsvdy_db1.hollard_leads");
+            $stmt = $pdo->prepare("SELECT count(*) AS totalRecords FROM twomoygask_db1.twomoun_leads");
             $stmt->execute();
             $row = $stmt->fetch();
             $countDBRecords = $row["totalRecords"];

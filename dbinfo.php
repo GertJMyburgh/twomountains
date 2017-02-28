@@ -1,6 +1,6 @@
 <?php
     define('DBHOST', 'localhost');
     define('DBUSER', 'root');
-    define('DBPASS', '');
-    define('DBNAME', 'hollapsvdy_db1');
+    define('DBPASS', 'root');
+    define('DBNAME', 'twomoygask_db1');
 ?>

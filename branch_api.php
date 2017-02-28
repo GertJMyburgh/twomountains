@@ -13,7 +13,7 @@ date_default_timezone_set("Africa/Johannesburg");
 
 $log_datetime = date('Y-m-d H:i:s');
 
-// TABLE = hollard_branches
+// TABLE = twomoun_branches
 // FIELD2 = province
 // FIELD3 = city
 // FIELD4 = branch
@@ -56,7 +56,7 @@ class Branch_api {
         }
 
         try {
-            $stmt = $pdo->prepare("SELECT DISTINCT province FROM hollard_branches");
+            $stmt = $pdo->prepare("SELECT DISTINCT province FROM twomoun_branches");
             $stmt->execute();
             $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -81,7 +81,7 @@ class Branch_api {
         }
 
         try {
-            $stmt = $pdo->prepare("SELECT DISTINCT province, city FROM hollard_branches WHERE province=:province");
+            $stmt = $pdo->prepare("SELECT DISTINCT province, city FROM twomoun_branches WHERE province=:province");
             $stmt->bindValue(':province', $province, PDO::PARAM_STR);
             $stmt->execute();
             $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -107,7 +107,7 @@ class Branch_api {
         }
 
         try {
-            $stmt = $pdo->prepare("SELECT branch, manager, address, mapurl FROM hollard_branches WHERE province=:province AND city=:city");
+            $stmt = $pdo->prepare("SELECT branch, manager, address, mapurl FROM twomoun_branches WHERE province=:province AND city=:city");
             $stmt->bindValue(':province', $province, PDO::PARAM_STR);
             $stmt->bindValue(':city', $city, PDO::PARAM_STR);
             $stmt->execute();
@@ -136,7 +136,7 @@ class Branch_api {
         }
 
         try {
-            $stmt = $pdo->prepare("SELECT count(*) AS totalRecords FROM hollard_branches");
+            $stmt = $pdo->prepare("SELECT count(*) AS totalRecords FROM twomoun_branches");
             $stmt->execute();
             $row = $stmt->fetch();
             $countDBRecords = $row["totalRecords"];
