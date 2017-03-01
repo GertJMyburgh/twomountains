@@ -11,8 +11,8 @@
     
     // Get the branch, manager, address and google mapurl of the selected city belonging to the selected province
     if ($_POST) {
-        $myProvince     = $_POST['province_placeholder'];
-        $myCity         = $_POST['city_placeholder'];
+        $myProvince = $_POST['province_placeholder'];
+        $myCity     = $_POST['city_placeholder'];
     } else {    
         if ($_GET) {
             if (trim($myProvince) == "") {
@@ -39,7 +39,7 @@
         $displayBranch = $value['branch'];
         $displayManager = $value['manager'];
         $displayAddress = $value['address'];
-        $displayMapURL = $value['mapurl'];
+        $displayMapURL = "search-results-map.html?mapurl=".$value['mapurl'];
     }
     
 ?>
@@ -56,7 +56,7 @@
         <meta name="author" content="">
         <link rel="icon" href="images/favicon.ico">
 
-        <title>Hollard Branch Locator - Search Results</title>
+        <title>Two Mountains Branch Locator - Search Results</title>
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -68,20 +68,73 @@
         <link href="css/main.css" rel="stylesheet">
 
         <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-        <!-- <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
+        <!--[if lt IE 9]>
+        <script src="../../assets/js/ie8-responsive-file-warning.js"></script>
+        <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+        [endif]-->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <!--[endif]-->
-        
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        
+
         <script type="text/javascript">
-            
-            // <![CDATA[            
+
+            // <![CDATA[
+            function Province() {
+                $('#province_placeholder').empty();
+                $('#province_placeholder').append("<option>Loading......</option>");
+                $('#city_placeholder').append("<option value='0'>Select Your City</option>");
+                $.ajax({
+                    type:"GET",
+                    url:"provinces_dropdown.php",
+                    contentType:"application/json; charset=utf-8",
+                    cache: false,
+                    dataType:"json",
+                    success: function(data) {
+                        $('#province_placeholder').empty();
+                        $('#province_placeholder').append("<option value='0'>Select Your Province</option>");
+                        $.each(data,function(i,item) {
+                            $('#province_placeholder').append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+                        });
+                    },
+                    complete: function() {
+                    }
+                });
+            }
+
+            function City(sid) {
+                $('#city_placeholder').empty();
+                $('#city_placeholder').append("<option>Loading......</option>");
+                $.ajax({
+                    type:"GET",
+                    url:"cities_dropdown.php?sid=" + sid,
+                    contentType:"application/json; charset=utf-8",
+                    cache: false,
+                    dataType:"json",
+                    success: function(data) {
+                        $('#city_placeholder').empty();
+                        $('#city_placeholder').append("<option value='0'>Select Your City</option>");
+                        $.each(data,function(i,item) {
+                            $('#city_placeholder').append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+                        });
+                    },
+                    complete: function() {
+                    }
+                });
+            }
+
+            $(document).ready(function() {
+                Province();
+                $("#province_placeholder").change(function() {
+                    var provinceid = $("#province_placeholder").val();
+                    City(provinceid);
+                });
+            });
+
             function trimWhiteSpacesAll(str) {
                 return str.replace(/\s/g, "");
             }
@@ -107,8 +160,8 @@
             function validateForm() {
                 var a = document.forms["Form1"]["name"].value;
                 var c = document.forms["Form1"]["phoneNumber"].value;
-                var d = document.forms["Form1"]["products"].value;       
-                
+                var d = document.forms["Form1"]["products"].value;
+
                 // Strip any spaces in front or at the back
                 a = trimWhiteSpacesLeftRight(a);
                 document.forms["Form1"]["name"].value = a;
@@ -150,6 +203,27 @@
                 }
             }
 
+            function validateFormSearch() {
+                var e = document.forms["Form2"]["province_placeholder"].value;
+                var f = document.forms["Form2"]["city_placeholder"].value;
+
+                if (e=="0" || e=="") {
+                    alert("Please select a province from the province dropdown list.");
+                    document.forms["Form2"]["province_placeholder"].focus();
+                    return false;
+                }
+
+                if (f=="0" || f=="") {
+                    alert("Please select a city from the city dropdown list.");
+                    document.forms["Form2"]["city_placeholder"].focus();
+                    return false;
+                }
+
+                var myVal = "search-results.php?province=" + document.forms["Form2"]["province_placeholder"].value + "&city=" + document.forms["Form2"]["city_placeholder"].value;
+                document.forms["Form2"].action = myVal;
+                document.forms["Form2"].submit();
+            }
+
             function CalcKeyCode(aChar) {
                 var character = aChar.substring(0,1);
                 var code = aChar.charCodeAt(0);
@@ -163,10 +237,10 @@
                 var cCode     = CalcKeyCode(lchar);
 
                 /* Check if the keyed in character is a number
-                   do you want alphabetic UPPERCASE only ?
-                   or lower case only just check their respective
-                   codes and replace the 48 and 57
-                */
+                 do you want alphabetic UPPERCASE only ?
+                 or lower case only just check their respective
+                 codes and replace the 48 and 57
+                 */
 
                 if (cCode < 48 || cCode > 57 ) {
                     var myNumber = val.value.substring(0, (strLength) - 1);
@@ -194,10 +268,34 @@
                 return val.value;
             }
 
+            function checkFieldOnBlurSearch(val) {
+                val.value = trimWhiteSpacesLeftRight(val.value);
+                if (val.value == "0") {
+                    switch(val.name) {
+                        case 'province_placeholder':
+                            val.value = "0";
+                            break;
+                        default:
+                            val.value = "0";
+                    }
+                }
+
+                return val.value;
+            }
+
             function cleanFieldOnFocus(val) {
                 val.value = trimWhiteSpacesLeftRight(val.value);
                 if (val.value == "My Name" || val.value == "My Number" || val.value == "MyNumber" || val.value == "SelectProduct") {
                     val.value = "";
+                }
+
+                return val.value;
+            }
+
+            function cleanFieldOnFocusSearch(val) {
+                val.value = trimWhiteSpacesLeftRight(val.value);
+                if (val.value == "Select a Province" || val.value == "Select a City") {
+                    val.value = "0";
                 }
 
                 return val.value;
@@ -248,118 +346,10 @@
                 }
 
                 return returnString;
-            }    
-
-            function firePixelOnURL() {
-                
-		// alert("PROD - firePixelOnURL");
-		// e.preventDefault();
-
-                // Google Code for Navigate Conversion Page
-                // var google_conversion_id = 874349905;
-                // var google_conversion_language = "en";
-                // var google_conversion_format = "3";             
-                // var google_conversion_color = "ffffff";
-                // var google_conversion_label = "LjqcCMf48mkQ0Yr2oAM";
-                // var google_remarketing_only = false;
-
-                var image = new Image(1,1); 
-                image.src = "//www.googleadservices.com/pagead/conversion/874349905/?label=LjqcCMf48mkQ0Yr2oAM&amp;guid=ON&amp;script=0";
-
-                // alert ("search - DD");
-                // window.open("exe_analytics.html?value=search_URL");
-                // alert ("search - EE");
-           
-		console.log("PROD AA *************************** firePixelOnURL");
-				
-                // $.get("url_analytics.asp", function(data, status) {
-                //    alert("Data: " + data + "\nStatus: " + status);
-                // });
-
-                // Victor Geldenhuys from Thrive Online has registered these 2 values on Google Console
-                // 1. value=search_TEL
-                // 2. value=search_URL
-
-                // Ajax form 
-                $.post('url_analytics.php', $(this).serialize())                
-                .done( function ( data ) {
-                    var json = $.parseJSON(data);
-                    console.log("PROD BB *************************** data: " + json);
-                    alert("json: " + json);
-                    // console.log("Lead: " + json.lead);
-                })                
-                .fail( function () {
-                    console.log( 'PROD CC *************************** Ajax Submit Failed ...' );
-                });				
-                
-                return true;
-            }
-            
-            // $("#test_url").on("click", firePixelOnURL);
-            
-            // $("#test_url").on("click", firePixelOnURL);
-            
-            // $("#test_url").click(function() {
-            //  firePixelOnURL();
-            // });
-
-            function firePixelOnTelNrClick() {
-				
-		// alert("PROD - firePixelOnTelNrClick");
-		// e.preventDefault();
-				
-                // Google Code for Navigate Conversion Page
-                // var google_conversion_id        = 874349905;
-                // var google_conversion_language  = "en";
-                // var google_conversion_format    = "3";
-                // var google_conversion_color     = "ffffff";
-                // var google_conversion_label     = "9ePHCPnN8WkQ0Yr2oAM";
-                // var google_remarketing_only     = false;
-
-                var image = new Image(1,1); 
-                image.src = "//www.googleadservices.com/pagead/conversion/874349905/?label=9ePHCPnN8WkQ0Yr2oAM&amp;guid=ON&amp;script=0";
-           
-                // alert ("index - BB");
-                // window.open("exe_analytics.html?value=index_TEL");
-                // alert ("index - CC");
-				
-		console.log("PROD AA *************************** firePixelOnTelNrClick");
-				
-                // $.get("test_analytics.asp", function(data, status) {
-                //   alert("Data: " + data + "\nStatus: " + status);
-                // });
-
-                // Victor Geldenhuys from Thrive Online has registered these 2 values on Google Console
-                // 1. value=search_TEL
-                // 2. value=search_URL
-
-                // Ajax form 
-                $.post('tel_analytics.php', $(this).serialize())                
-                .done( function ( data ) {
-                    var json = $.parseJSON(data);
-                    console.log("PROD BB *************************** data: " + json);
-                    alert("json: " + json);
-                    // console.log("Lead: " + json.lead);
-                })                
-                .fail( function () {
-                    console.log( 'PROD CC *************************** Ajax Submit Failed ...' );
-                });				
-                
-                return true;
             }
 
-            // $("#test_call").on("click", firePixelOnTelNrClick);
-            
-            // $("#test_call").on("click", firePixelOnTelNrClick);
-            
-            // $("#test_call").click(function() {
-            //  firePixelOnTelNrClick();
-            // });
-           
-            //]]>
-            
         </script>
-        
+
     </head>
 
     <body>
@@ -371,7 +361,6 @@
             })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
             ga('create', 'UA-83544421-1', 'auto');
             ga('send', 'pageview');            
-            // alert ("DD");
         </script>
 
         <!--TOP MASTHEAD CONTAINING HOME ICON LINKING BACK TO BRANCHES INDEX PG-->
@@ -379,7 +368,7 @@
             <div class="container">
                 <div class="row">
                     <nav class="home-main">
-                        <a class="home-icon" href="#">&nbsp;</a>
+                        <p class="home-glyph"><a href="#"><span class="glyphicon glyphicon-home" style="color:#fff;"></span></a></p>
                     </nav>
                 </div>
             </div>
@@ -402,23 +391,24 @@
             
             <!--MAIN CONTENT SECTION ON LEFT INCLUDING SEARCH RESULTS-->
             <div class="col-lg-10 branch-header branch-title">
-                <h1>Hollard Branch Locator</h1>
-                <h3 class="branch-subheading">Find your nearest Hollard branch:</h3>
+                <h1>Two Mountains Branch Locator</h1>
+                <h3 class="branch-subheading">Find your nearest Two Mountains branch:</h3>
             </div>
 
             <div class="row">
 
                 <div class="col-sm-6 col-md-6 branch-main">
                     <!--BRANCHES SEARCH REDEFINE BUTTON - TO TAKE USER BACK TO THE SEARCH PAGE-->
-                    <form action="index.php" method="" class="form-inline">
-                        <div class="col-lg-12 form-group branch-form">            
-                            <input type="submit" class="btn branch-form-btn" id="submit" value="REDEFINE SEARCH"/>                       
+                    <form action="index.php" method="post" class="form-inline">
+                        <div class="col-lg-12 form-group branch-form">
+                            <input type="submit" class="btn branch-form-btn" id="redefine-search" value="REDEFINE SEARCH"/>
                         </div>
-                    </form>  
+                    </form>
 
                     <!--LIST OF RESULTS FROM SEARCH-->
                     <div class="col-sm-12 branch-main">
                         <h3 class="search-results-header">Branch Locator Results:</h3>
+
                         <div class="search-results">
                             <h4 class="search-results-branchname"><?php print $displayBranch;?></h4>
                             <dl class="search-results-list">
@@ -427,9 +417,7 @@
                                 <dt>Branch Manager: </dt>
                                 <dd><?php print $displayManager;?></dd>                
                             </dl>
-                            <!-- <p><a href="search-results-map.php" class="search-results-maplink">See Map</a></p> -->
-                            <!-- <p><a href="<?php print $displayMapURL;?>" class="search-results-maplink" onClick="firePixelOnURL()" >open with google maps</a></p> -->
-                            <p><a href="<?php print $displayMapURL;?>" class="search-results-maplink" id="test_url" onClick="firePixelOnURL()" >open with google maps</a></p>                            
+                            <p><a href="<?php print $displayMapURL;?>" class="search-results-maplink">See Map</a></p>
                         </div>
                     </div>
                 </div>
@@ -529,4 +517,5 @@
         <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
         
     </body>
+
 </html>
