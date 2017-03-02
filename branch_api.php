@@ -107,7 +107,7 @@ class Branch_api {
         }
 
         try {
-            $stmt = $pdo->prepare("SELECT branch, manager, address, mapurl FROM twomoun_branches WHERE province=:province AND city=:city");
+            $stmt = $pdo->prepare("SELECT province, city, branch, manager, latitude, longitute, address, mapurl FROM twomoun_branches WHERE province=:province AND city=:city");
             $stmt->bindValue(':province', $province, PDO::PARAM_STR);
             $stmt->bindValue(':city', $city, PDO::PARAM_STR);
             $stmt->execute();

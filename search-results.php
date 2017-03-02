@@ -27,19 +27,27 @@
         }
     }
             
-    $displayBranch  = "";
-    $displayManager = "";
-    $displayAddress = "";
-    $displayMapURL  = "";
-    
+    $displayProvince  = "";
+    $displayCity      = "";
+    $displayBranch    = "";
+    $displayManager   = "";
+    $displayLatitude  = "";
+    $displayLongitude = "";
+    $displayAddress   = "";
+    $displayMapURL    = "";
+
     $info = $branch_api->getCityInfo($myProvince, $myCity);
 
     // Display the info
     foreach ($info as $key => $value) {
-        $displayBranch = $value['branch'];
-        $displayManager = $value['manager'];
-        $displayAddress = $value['address'];
-        $displayMapURL = "search-results-map.html?mapurl=".$value['mapurl'];
+        $displayProvince  = $value['province'];
+        $displayCity      = $value['city'];
+        $displayBranch    = $value['branch'];
+        $displayManager   = $value['manager'];
+        $displayLatitude  = $value['latitude'];
+        $displayLongitude = $value['longitute'];
+        $displayAddress   = $value['address'];
+        $displayMapURL    = "search-results-map.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&mapurl={$value['mapurl']}";
     }
     
 ?>
