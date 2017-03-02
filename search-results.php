@@ -47,7 +47,8 @@
         $displayLatitude  = $value['latitude'];
         $displayLongitude = $value['longitute'];
         $displayAddress   = $value['address'];
-        $displayMapURL    = "search-results-map.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&mapurl={$value['mapurl']}";
+        $displayMapURL         = "search-results-map.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&mapurl={$value['mapurl']}";
+        $redirectCallMeBackURL = "call-me-back.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&mapurl={$value['mapurl']}";
     }
     
 ?>
@@ -362,13 +363,16 @@
 
     <body>
         
+        <!-- This is the Universal Analytics tracking code. To get all the benefits of
+        Universal Analytics copy and paste this code into every webpage you want to track.
+        -->
         <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-            ga('create', 'UA-83544421-1', 'auto');
-            ga('send', 'pageview');            
+            ga('create', 'UA-91348818-1', 'auto');
+            ga('send', 'pageview');
         </script>
 
         <!--TOP MASTHEAD CONTAINING HOME ICON LINKING BACK TO BRANCHES INDEX PG-->
@@ -435,7 +439,7 @@
                     <div class="sidebar-module sidebar-module-inset sidebar">
                         <h2>Rather call me back please</h2>
                         
-                        <form action="call-me-back.php" enctype="multipart/form-data" name="Form1" onsubmit="return validateForm()" method="POST">
+                        <form action="<?php print $redirectCallMeBackURL;?>" enctype="multipart/form-data" name="Form1" onsubmit="return validateForm()" method="POST">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="name" id="name" value="My Name" onblur="checkFieldOnBlur(Form1.name)" onfocus="cleanFieldOnFocus(Form1.name)" />
                             </div>
