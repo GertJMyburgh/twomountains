@@ -40,13 +40,13 @@
 
     // Display the info
     foreach ($info as $key => $value) {
-        $displayProvince  = $value['province'];
-        $displayCity      = $value['city'];
-        $displayBranch    = $value['branch'];
-        $displayManager   = $value['manager'];
-        $displayLatitude  = $value['latitude'];
-        $displayLongitude = $value['longitute'];
-        $displayAddress   = $value['address'];
+        $displayProvince       = $value['province'];
+        $displayCity           = $value['city'];
+        $displayBranch         = $value['branch'];
+        $displayManager        = $value['manager'];
+        $displayLatitude       = $value['latitude'];
+        $displayLongitude      = $value['longitute'];
+        $displayAddress        = $value['address'];
         $displayMapURL         = "search-results-map.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&mapurl={$value['mapurl']}";
         $redirectCallMeBackURL = "call-me-back.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&mapurl={$value['mapurl']}";
     }
@@ -93,57 +93,6 @@
         <script type="text/javascript">
 
             // <![CDATA[
-            function Province() {
-                $('#province_placeholder').empty();
-                $('#province_placeholder').append("<option>Loading......</option>");
-                $('#city_placeholder').append("<option value='0'>Select Your City</option>");
-                $.ajax({
-                    type:"GET",
-                    url:"provinces_dropdown.php",
-                    contentType:"application/json; charset=utf-8",
-                    cache: false,
-                    dataType:"json",
-                    success: function(data) {
-                        $('#province_placeholder').empty();
-                        $('#province_placeholder').append("<option value='0'>Select Your Province</option>");
-                        $.each(data,function(i,item) {
-                            $('#province_placeholder').append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
-                        });
-                    },
-                    complete: function() {
-                    }
-                });
-            }
-
-            function City(sid) {
-                $('#city_placeholder').empty();
-                $('#city_placeholder').append("<option>Loading......</option>");
-                $.ajax({
-                    type:"GET",
-                    url:"cities_dropdown.php?sid=" + sid,
-                    contentType:"application/json; charset=utf-8",
-                    cache: false,
-                    dataType:"json",
-                    success: function(data) {
-                        $('#city_placeholder').empty();
-                        $('#city_placeholder').append("<option value='0'>Select Your City</option>");
-                        $.each(data,function(i,item) {
-                            $('#city_placeholder').append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
-                        });
-                    },
-                    complete: function() {
-                    }
-                });
-            }
-
-            $(document).ready(function() {
-                Province();
-                $("#province_placeholder").change(function() {
-                    var provinceid = $("#province_placeholder").val();
-                    City(provinceid);
-                });
-            });
-
             function trimWhiteSpacesAll(str) {
                 return str.replace(/\s/g, "");
             }
@@ -212,27 +161,6 @@
                 }
             }
 
-            function validateFormSearch() {
-                var e = document.forms["Form2"]["province_placeholder"].value;
-                var f = document.forms["Form2"]["city_placeholder"].value;
-
-                if (e=="0" || e=="") {
-                    alert("Please select a province from the province dropdown list.");
-                    document.forms["Form2"]["province_placeholder"].focus();
-                    return false;
-                }
-
-                if (f=="0" || f=="") {
-                    alert("Please select a city from the city dropdown list.");
-                    document.forms["Form2"]["city_placeholder"].focus();
-                    return false;
-                }
-
-                var myVal = "search-results.php?province=" + document.forms["Form2"]["province_placeholder"].value + "&city=" + document.forms["Form2"]["city_placeholder"].value;
-                document.forms["Form2"].action = myVal;
-                document.forms["Form2"].submit();
-            }
-
             function CalcKeyCode(aChar) {
                 var character = aChar.substring(0,1);
                 var code = aChar.charCodeAt(0);
@@ -277,34 +205,10 @@
                 return val.value;
             }
 
-            function checkFieldOnBlurSearch(val) {
-                val.value = trimWhiteSpacesLeftRight(val.value);
-                if (val.value == "0") {
-                    switch(val.name) {
-                        case 'province_placeholder':
-                            val.value = "0";
-                            break;
-                        default:
-                            val.value = "0";
-                    }
-                }
-
-                return val.value;
-            }
-
             function cleanFieldOnFocus(val) {
                 val.value = trimWhiteSpacesLeftRight(val.value);
                 if (val.value == "My Name" || val.value == "My Number" || val.value == "MyNumber" || val.value == "SelectProduct") {
                     val.value = "";
-                }
-
-                return val.value;
-            }
-
-            function cleanFieldOnFocusSearch(val) {
-                val.value = trimWhiteSpacesLeftRight(val.value);
-                if (val.value == "Select a Province" || val.value == "Select a City") {
-                    val.value = "0";
                 }
 
                 return val.value;
