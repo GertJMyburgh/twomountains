@@ -1,10 +1,10 @@
-Province,      City,                             Branch,              Manager,Latitude,Longitude,Address,MapUrl
-Limpopo,       Giyani-Giyani Satellite,          Giyani Satellite,    Lucy Mdungwazi,-23.3165868,30.7159588,SHOP NO 4 ERROL COMPLEX 826,https://goo.gl/maps/Y6soTqBQ4Z72
-Limpopo,       Kgapane-Kgapane Satellite,        Kgapane Satellite,Matlou Lesilana,-23.6456808,30.2168908,Shop 30 MODJADJI PLAZA KGAPANE 838,https://goo.gl/maps/hV4oHZBzWbG2
-Limpopo,       Tzaneen-,                         Tzaneen Satellite,Katlego Phogole,-23.8294501,30.1610811,SHOP NO B9 BETWEEN NEDBANK AND JET,https://goo.gl/maps/HTywhawru9m
-Limpopo,       Tzaneen-,                         Tzaneen Branch,Mantsha Mawasha,-23.8327048,30.165385,4-FIFTH AVENUE# SAPICO DRIVE OPP CTM TZANEEN,https://goo.gl/maps/BpWJA925cws
-Limpopo,       Nkowankowa-Nkowankowa Warehouse,  Nkowankowa warehouse,Bongi Mukwana,-23.881819,30.2678195,197 CHARLIE STREET MERIDIAN COLLEGE ROAD,https://goo.gl/maps/8rWgYnp8qXs
-Limpopo,       Polokwane-,                       Polokwane Branch,Ann,-23.8910923,29.7212397,69 CHURCH STREET POLOKWANE 700,https://goo.gl/maps/oq7ZRDSYVDp
+Province,      City,                             Branch,               Manager,          Latitude,     Longitute,   Address,                             MapUrl
+Limpopo,       Giyani-Giyani Satellite,          Giyani Satellite,     Lucy Mdungwazi,   -23.3165868,  30.7159588,  SHOP NO 4 ERROL COMPLEX 826,         https://goo.gl/maps/Y6soTqBQ4Z72
+Limpopo,       Kgapane-Kgapane Satellite,        Kgapane Satellite,    Matlou Lesilana,  -23.6456808,  30.2168908,  Shop 30 MODJADJI PLAZA KGAPANE 838,  https://goo.gl/maps/hV4oHZBzWbG2
+Limpopo,       Tzaneen-,                         Tzaneen Satellite,    Katlego Phogole,  -23.8294501,30.1610811,SHOP NO B9 BETWEEN NEDBANK AND JET,https://goo.gl/maps/HTywhawru9m
+Limpopo,       Tzaneen-,                         Tzaneen Branch,       Mantsha Mawasha,  -23.8327048,30.165385,4-FIFTH AVENUE# SAPICO DRIVE OPP CTM TZANEEN,https://goo.gl/maps/BpWJA925cws
+Limpopo,       Nkowankowa-Nkowankowa Warehouse,  Nkowankowa warehouse, Bongi Mukwana,    -23.881819,30.2678195,197 CHARLIE STREET MERIDIAN COLLEGE ROAD,https://goo.gl/maps/8rWgYnp8qXs
+Limpopo,       Polokwane-,                       Polokwane Branch,     Ann,              -23.8910923,29.7212397,69 CHURCH STREET POLOKWANE 700,https://goo.gl/maps/oq7ZRDSYVDp
 Limpopo,       Polokwane-,                       Polokwane Satellite,Kganya Teffo,-23.9091441,29.4515923,LIBRARY GARDENS SHOP NO 3 BETWEEN STEERS $ DEBONAIRS ,https://goo.gl/maps/DXFWmzUt8H42
 Limpopo,       Namakgale-,                       Namakgale satellite,Lebogang Morema,-23.9280037,31.0256421,SHOP NO 6 NAMAKGALE CROSSING 1391,https://goo.gl/maps/VzG9T32Uw8m
 Limpopo,       Phalaborwa-,                      Phalaborwa HR Office,Chauke Promise,-23.9455801,31.1291463,22 KIAAT STREET PHALABORWA 1390,https://goo.gl/maps/xdYsgs7FnSk
