@@ -50,7 +50,14 @@
         $displayMapURL         = "search-results-map.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&latitute={$displayLatitude}&longitude={$displayLongitude}&mapurl={$value['mapurl']}";
         $redirectCallMeBackURL = "call-me-back.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}";
     }
-    
+
+    $myProvince = trim($_GET['province']);
+    $myProvince = str_replace("_", " ", $myProvince);
+    $myCity     = trim($_GET['city']);
+    $myCity     = str_replace("_", " ", $myCity);
+    $myBranch   = trim($_GET['branch']);
+    $myMapURL   = trim($_GET['mapurl']);
+
 ?>
 
 <!DOCTYPE html>
@@ -342,26 +349,21 @@
                 <div class="col-sm-4 col-sm-offset-2 branch-sidebar">
                     <div class="sidebar-module sidebar-module-inset sidebar">
                         <h2>Rather call me back please</h2>
-                        
-                        <form action="<?php print $redirectCallMeBackURL;?>" enctype="multipart/form-data" name="Form1" onsubmit="return validateForm()" method="POST">
+
+                        <form action="call-me-back.php" enctype="multipart/form-data" name="Form1" onsubmit="return validateForm()" method="POST">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="name" id="name" value="My Name" onblur="checkFieldOnBlur(Form1.name)" onfocus="cleanFieldOnFocus(Form1.name)" />
+                                <input type="text" class="form-control" name="name" id="name" value="My Name" onblur="checkFieldOnBlur(Form1.name)" onfocus="cleanFieldOnFocus(Form1.name)"/>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" value="My Number" onblur="checkFieldOnBlur(Form1.phoneNumber)" onfocus="cleanFieldOnFocus(Form1.phoneNumber)" />
+                                <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" value="My Number" onblur="checkFieldOnBlur(Form1.phoneNumber)" onfocus="cleanFieldOnFocus(Form1.phoneNumber)"/>
                             </div>
                             <div class="form-group">
-                                <select class="form-control input-group sidebar-form sidebar-caret" name="products" id="products" value="SelectProduct" onblur="checkFieldOnBlur(Form1.products)" onfocus="cleanFieldOnFocus(Form1.products)" >
-                                    <option value="SelectProduct" selected="" class="sidebar-select">Select a product</option>
-                                    <option value="Funeral" class="sidebar-options">Funeral</option>
-                                    <option value="Legal" class="sidebar-options">Legal</option>
-                                    <option value="Life" class="sidebar-options">Life</option>
-                                </select>
-                            </div>                
-                            <div class="form-group">            
-                                <input type="submit" class=" sidebar-btn" id="submit" value="CALL ME BACK"/>                       
+                                <input type="hidden" name="products" id="products" value="Funeral">
                             </div>
-                        </form>            
+                            <div class="form-group">
+                                <input type="submit" class=" sidebar-btn" id="please-call-me" value="Please Call Me!"/>
+                            </div>
+                        </form>
                         
                     </div>
 

@@ -14,60 +14,6 @@
     if (trim($nameSurname) !== "" || trim($phoneNumber) !== "" || trim($product) !== "") {
         $lead_api->insertLead($nameSurname, $phoneNumber, $product);
     }
-?>
-
-<?php
-
-// Include Branch_api class
-require_once("branch_api.php");
-
-// Get a handle/reference to the Branch API
-$branch_api = new Branch_api();
-
-$myProvince = "";
-$myCity     = "";
-
-// Get the branch, manager, address and google mapurl of the selected city belonging to the selected province
-if ($_POST) {
-    $myProvince = $_POST['province_placeholder'];
-    $myCity     = $_POST['city_placeholder'];
-} else {
-    if ($_GET) {
-        if (trim($myProvince) == "") {
-            $myProvince = trim($_GET['prov']);
-            $myProvince = str_replace("_", " ", $myProvince);
-        }
-
-        if (trim($myCity) == "") {
-            $myCity = trim($_GET['city']);
-            $myCity = str_replace("_", " ", $myCity);
-        }
-    }
-}
-
-$displayProvince  = "";
-$displayCity      = "";
-$displayBranch    = "";
-$displayManager   = "";
-$displayLatitude  = "";
-$displayLongitude = "";
-$displayAddress   = "";
-$displayMapURL    = "";
-
-$info = $branch_api->getCityInfo($myProvince, $myCity);
-
-// Display the info
-foreach ($info as $key => $value) {
-    $displayProvince       = $value['province'];
-    $displayCity           = $value['city'];
-    $displayBranch         = $value['branch'];
-    $displayManager        = $value['manager'];
-    $displayLatitude       = $value['latitude'];
-    $displayLongitude      = $value['longitute'];
-    $displayAddress        = $value['address'];
-    $displayMapURL         = "search-results-map.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&mapurl={$value['mapurl']}";
-    $redirectCallMeBackURL = "call-me-back.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&mapurl={$value['mapurl']}";
-}
 
 ?>
 
@@ -128,49 +74,6 @@ foreach ($info as $key => $value) {
             }
 
             function validateForm() {
-                var a = document.forms["Form1"]["name"].value;
-                var c = document.forms["Form1"]["phoneNumber"].value;
-                var d = document.forms["Form1"]["products"].value;
-
-                // Strip any spaces in front or at the back
-                a = trimWhiteSpacesLeftRight(a);
-                document.forms["Form1"]["name"].value = a;
-                c = trimWhiteSpacesAll(c);
-                if (isIntegerNumber(c) == false) {
-                    c = document.forms["Form1"]["phoneNumber"].value;
-                    c = trimWhiteSpacesLeftRight(c);
-                }
-                document.forms["Form1"]["phoneNumber"].value = c;
-
-                if (a=="My Name" || a=="") {
-                    alert("Please enter at least your name.");
-                    document.forms["Form1"]["name"].focus();
-                    return false;
-                }
-
-                if (isAlphaCharacters(a) == false) {
-                    alert("Do not use any special characters in the 'Name' field. Only alphabetic characters please.");
-                    document.forms["Form1"]["name"].focus();
-                    return false;
-                }
-
-                if (c.length<10 || isIntegerNumber(c) == false) {
-                    alert("Please enter a phone number of at least 10 numeric digits (no other characters) ie 0210000000 or 082000000");
-                    document.forms["Form1"]["phoneNumber"].focus();
-                    return false;
-                }
-
-                if (c.charAt(0) != 0) {
-                    alert("The 'Phone Number' may only start with the numeric digit 0 (e.g. 021 or 074 etc.)");
-                    document.forms["Form1"]["phoneNumber"].focus();
-                    return false;
-                }
-
-                if (d=="SelectProduct" || d=="") {
-                    alert("Please select a product from the dropdown list.");
-                    document.forms["Form1"]["products"].focus();
-                    return false;
-                }
             }
 
             function CalcKeyCode(aChar) {
@@ -197,33 +100,6 @@ foreach ($info as $key => $value) {
                 }
 
                 return false;
-            }
-
-            function checkFieldOnBlur(val) {
-                val.value = trimWhiteSpacesLeftRight(val.value);
-                if (val.value == "") {
-                    switch(val.name) {
-                        case 'name':
-                            val.value = "My Name";
-                            break;
-                        case 'phoneNumber':
-                            val.value = "My Number";
-                            break;
-                        default:
-                            val.value = "SelectProduct";
-                    }
-                }
-
-                return val.value;
-            }
-
-            function cleanFieldOnFocus(val) {
-                val.value = trimWhiteSpacesLeftRight(val.value);
-                if (val.value == "My Name" || val.value == "My Number" || val.value == "MyNumber" || val.value == "SelectProduct") {
-                    val.value = "";
-                }
-
-                return val.value;
             }
 
             function isInteger(s) {
@@ -343,9 +219,7 @@ foreach ($info as $key => $value) {
                 <h2 class="branch-subheading">Thank you for submitting your contact details. One of our agents will be in contact soon.</h2>
                 <br />
                 <!--HOLLARD CALL DIRECT NUMBER-->
-                <!-- <h3 class="universal-number"><a href="tel:0800601016" onClick="firePixelOnTelNrClick();" >Or call us: 0800 601 016</a></h3> -->
-                <!-- <div id="test_call"><h3 class="universal-number"><a href="tel:0800601016">Or call us: 0800 601 016</a></h3></div> -->
-                <h3 class="universal-number-thankyou"><a href="tel:0800601016" id="test_call" onClick="firePixelOnTelNrClick();" >Or call us: 0800 601 016</a></h3>
+                <a href="click-to-call.html" target="_blank" class="ph-glyph"><h3 class="universal-number"><span class="glyphicon glyphicon-phone-alt"></span> Or call us directly!</h3></a>
             </div>
         </div><!-- /.container -->
 

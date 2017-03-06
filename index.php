@@ -1,5 +1,4 @@
 <?php
-    include("dbinfo.php");
 ?>
 
 <!DOCTYPE html>
@@ -391,12 +390,7 @@
                                 <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" value="My Number" onblur="checkFieldOnBlur(Form1.phoneNumber)" onfocus="cleanFieldOnFocus(Form1.phoneNumber)" />
                             </div>
                             <div class="form-group">
-                                <select class="form-control input-group sidebar-form sidebar-caret" name="products" id="products" value="SelectProduct" onblur="checkFieldOnBlur(Form1.products)" onfocus="cleanFieldOnFocus(Form1.products)" >
-                                    <option value="SelectProduct" selected="" class="sidebar-select">Select a product</option>
-                                    <option value="Funeral" class="sidebar-options">Funeral</option>
-                                    <option value="Legal" class="sidebar-options">Legal</option>
-                                    <option value="Life" class="sidebar-options">Life</option>
-                                </select>
+                                <input type="hidden" name="products" id="products" value="Funeral">
                             </div>
                             <div class="form-group">
                                 <input type="submit" class=" sidebar-btn" id="please-call-me" value="Please Call Me!"/>
