@@ -1,3 +1,58 @@
+<?php
+
+// Include Branch_api class
+require_once("branch_api.php");
+
+// Get a handle/reference to the Branch API
+$branch_api = new Branch_api();
+
+$myProvince = "";
+$myCity     = "";
+
+// Get the branch, manager, address and google mapurl of the selected city belonging to the selected province
+if ($_POST) {
+    $myProvince = $_POST['province_placeholder'];
+    $myCity     = $_POST['city_placeholder'];
+} else {
+    if ($_GET) {
+        if (trim($myProvince) == "") {
+            $myProvince = trim($_GET['province']);
+            $myProvince = str_replace("_", " ", $myProvince);
+        }
+
+        if (trim($myCity) == "") {
+            $myCity = trim($_GET['city']);
+            $myCity = str_replace("_", " ", $myCity);
+        }
+    }
+}
+
+$displayProvince  = "";
+$displayCity      = "";
+$displayBranch    = "";
+$displayManager   = "";
+$displayLatitude  = "";
+$displayLongitude = "";
+$displayAddress   = "";
+$displayMapURL    = "";
+
+$info = $branch_api->getCityInfo($myProvince, $myCity);
+
+// Display the info
+foreach ($info as $key => $value) {
+    $displayProvince       = $value['province'];
+    $displayCity           = $value['city'];
+    $displayBranch         = $value['branch'];
+    $displayManager        = $value['manager'];
+    $displayLatitude       = $value['latitude'];
+    $displayLongitude      = $value['longitute'];
+    $displayAddress        = $value['address'];
+    $displayMapURL         = "search-results-map.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&mapurl={$value['mapurl']}";
+    $redirectCallMeBackURL = "call-me-back.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&mapurl={$value['mapurl']}";
+}
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -33,13 +88,188 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+        <script type="text/javascript">
+
+            // <![CDATA[
+            function trimWhiteSpacesAll(str) {
+                return str.replace(/\s/g, "");
+            }
+
+            function trimWhiteSpacesLeftRight(str) {
+                str = str.replace(/^\s+/, '');
+                for (var i = str.length - 1; i >= 0; i--) {
+                    if (/\S/.test(str.charAt(i))) {
+                        str = str.substring(0, i + 1);
+                        break;
+                    }
+                }
+                return str;
+            }
+
+            function getURL() {
+                var url;
+                url = parent.document.location.href;
+                //alert("this is the parent url "+url);
+                document.getElementById('urlPathName').value = url;
+            }
+
+            function validateForm() {
+                var a = document.forms["Form1"]["name"].value;
+                var c = document.forms["Form1"]["phoneNumber"].value;
+                var d = document.forms["Form1"]["products"].value;
+
+                // Strip any spaces in front or at the back
+                a = trimWhiteSpacesLeftRight(a);
+                document.forms["Form1"]["name"].value = a;
+                c = trimWhiteSpacesAll(c);
+                if (isIntegerNumber(c) == false) {
+                    c = document.forms["Form1"]["phoneNumber"].value;
+                    c = trimWhiteSpacesLeftRight(c);
+                }
+                document.forms["Form1"]["phoneNumber"].value = c;
+
+                if (a=="My Name" || a=="") {
+                    alert("Please enter at least your name.");
+                    document.forms["Form1"]["name"].focus();
+                    return false;
+                }
+
+                if (isAlphaCharacters(a) == false) {
+                    alert("Do not use any special characters in the 'Name' field. Only alphabetic characters please.");
+                    document.forms["Form1"]["name"].focus();
+                    return false;
+                }
+
+                if (c.length<10 || isIntegerNumber(c) == false) {
+                    alert("Please enter a phone number of at least 10 numeric digits (no other characters) ie 0210000000 or 082000000");
+                    document.forms["Form1"]["phoneNumber"].focus();
+                    return false;
+                }
+
+                if (c.charAt(0) != 0) {
+                    alert("The 'Phone Number' may only start with the numeric digit 0 (e.g. 021 or 074 etc.)");
+                    document.forms["Form1"]["phoneNumber"].focus();
+                    return false;
+                }
+
+                if (d=="SelectProduct" || d=="") {
+                    alert("Please select a product from the dropdown list.");
+                    document.forms["Form1"]["products"].focus();
+                    return false;
+                }
+            }
+
+            function CalcKeyCode(aChar) {
+                var character = aChar.substring(0,1);
+                var code = aChar.charCodeAt(0);
+                return code;
+            }
+
+            function checkNumber(val) {
+                var strPass   = val.value;
+                var strLength = strPass.length;
+                var lchar     = val.value.charAt((strLength) - 1);
+                var cCode     = CalcKeyCode(lchar);
+
+                /* Check if the keyed in character is a number
+                 do you want alphabetic UPPERCASE only ?
+                 or lower case only just check their respective
+                 codes and replace the 48 and 57
+                 */
+
+                if (cCode < 48 || cCode > 57 ) {
+                    var myNumber = val.value.substring(0, (strLength) - 1);
+                    val.value = myNumber;
+                }
+
+                return false;
+            }
+
+            function checkFieldOnBlur(val) {
+                val.value = trimWhiteSpacesLeftRight(val.value);
+                if (val.value == "") {
+                    switch(val.name) {
+                        case 'name':
+                            val.value = "My Name";
+                            break;
+                        case 'phoneNumber':
+                            val.value = "My Number";
+                            break;
+                        default:
+                            val.value = "SelectProduct";
+                    }
+                }
+
+                return val.value;
+            }
+
+            function cleanFieldOnFocus(val) {
+                val.value = trimWhiteSpacesLeftRight(val.value);
+                if (val.value == "My Name" || val.value == "My Number" || val.value == "MyNumber" || val.value == "SelectProduct") {
+                    val.value = "";
+                }
+
+                return val.value;
+            }
+
+            function isInteger(s) {
+                var i;
+                for (i = 0; i < s.length; i++){
+                    // Check that current character is number.
+                    var c = s.charAt(i);
+                    if (((c < "0") || (c > "9"))) return false;
+                }
+                // All characters are numbers.
+
+                return true;
+            }
+
+            function isIntegerNumber(x) {
+                var numbers = /^[-+]?[0-9]+$/;
+
+                if (x.match(numbers)) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+
+            function isAlphaCharacters(x) {
+                var characters = /^[a-zA-Z ]+$/;
+
+                if (x.match(characters)) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+
+            function stripCharsInBag(s, bag) {
+                var i;
+                var returnString = "";
+                // Search through string's characters one by one.
+                // If character is not in bag, append to returnString.
+                for (i = 0; i < s.length; i++) {
+                    var c = s.charAt(i);
+                    if (bag.indexOf(c) == -1) returnString += c;
+                }
+
+                return returnString;
+            }
+
+        </script>
+
         <!-- START BRANCH DATA
           Province = Free State
           City = Bloemfontein-Botshabelo
           Branch = Botshabelo
           Manager = Unknown
           Latitude = -29.0000000
-          Longitude = 26.0000000
+          Longitute = 26.0000000
           Address = Shop 19 RCM Shopping Complex Strand St Botshabelo FS
           mapurl = https://goo.gl/maps/GBhmm15vW7H2
           center: new google.maps.LatLng(-29.0000000, 26.0000000),
@@ -52,7 +282,7 @@
 
             function initMap() {
                 var mapProperties = {
-                    center: new google.maps.LatLng(-29.0000000, 26.0000000),
+                    center: new google.maps.LatLng(<?php print $displayLatitude;?>, <?php print $displayLongitude;?>),
                     zoom: 8,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
@@ -128,14 +358,14 @@
 
                         <!--BRANCH DETAILS PERTAINING TO MAP-->
                         <div class="search-results">
-                            <h4 class="search-results-branchname">George</h4>
+                            <h4 class="search-results-branchname"><?php print $displayBranch;?></h4>
                             <dl class="search-results-list">
                                 <dt>Address:</dt>
-                                <dd>Unit 9, Canal Edge III, Carl Cronje Drive, Tyger Waterfront, 7530</dd>
-                                <dt>Branch Manager:</dt>
-                                <dd>Heinrich Westenraad</dd>
+                                <dd><?php print $displayAddress;?></dd>
+                                <dt>Branch Manager: </dt>
+                                <dd><?php print $displayManager;?></dd>
                             </dl>
-                            <p><a href="https://goo.gl/maps/hKDhx7JavKs" class="search-results-maplink">See Map</a></p>
+                            <p><a href="<?php print $displayMapURL;?>" class="search-results-maplink">See Map</a></p>
                         </div>
                     </div>
 
@@ -153,25 +383,32 @@
                 <div class="col-sm-4 col-sm-offset-2 branch-sidebar">
                     <div class="sidebar-module sidebar-module-inset sidebar">
                         <h2>Rather call me back please</h2>
-                        <form action="call-me-back.html" method="post">
+
+                        <form action="<?php print $redirectCallMeBackURL;?>" enctype="multipart/form-data" name="Form1" onsubmit="return validateForm()" method="POST">
                             <div class="form-group">
-                                <!--<label for="name">Name</label>-->
-                                <input type="text" class="form-control" id="name" value="Name*"/>
+                                <input type="text" class="form-control" name="name" id="name" value="My Name" onblur="checkFieldOnBlur(Form1.name)" onfocus="cleanFieldOnFocus(Form1.name)" />
                             </div>
                             <div class="form-group">
-                                <!--<label for="email">Email</label>-->
-                                <input type="text" class="form-control" id="phoneNumber" value="Contact Number*"/>
+                                <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" value="My Number" onblur="checkFieldOnBlur(Form1.phoneNumber)" onfocus="cleanFieldOnFocus(Form1.phoneNumber)" />
                             </div>
                             <div class="form-group">
-                                <input type="submit" class=" sidebar-btn" id="please-call-me" value="Please Call Me!"/>
+                                <select class="form-control input-group sidebar-form sidebar-caret" name="products" id="products" value="SelectProduct" onblur="checkFieldOnBlur(Form1.products)" onfocus="cleanFieldOnFocus(Form1.products)" >
+                                    <option value="SelectProduct" selected="" class="sidebar-select">Select a product</option>
+                                    <option value="Funeral" class="sidebar-options">Funeral</option>
+                                    <option value="Legal" class="sidebar-options">Legal</option>
+                                    <option value="Life" class="sidebar-options">Life</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class=" sidebar-btn" id="submit" value="CALL ME BACK"/>
                             </div>
                         </form>
+
                     </div>
 
                     <!--HOLLARD CALL DIRECT NUMBER-->
                     <div class="sidebar-module">
-                        <a href="click-to-call.html" target="_blank" class="ph-glyph"><h3 class="universal-number"><span
-                                class="glyphicon glyphicon-phone-alt"></span> Or call us directly!</h3></a>
+                        <a href="click-to-call.html" target="_blank" class="ph-glyph"><h3 class="universal-number"><span class="glyphicon glyphicon-phone-alt"></span> Or call us directly!</h3></a>
                     </div>
 
                 </div><!-- /.branch-sidebar -->

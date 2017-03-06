@@ -47,8 +47,8 @@
         $displayLatitude       = $value['latitude'];
         $displayLongitude      = $value['longitute'];
         $displayAddress        = $value['address'];
-        $displayMapURL         = "search-results-map.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&mapurl={$value['mapurl']}";
-        $redirectCallMeBackURL = "call-me-back.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&mapurl={$value['mapurl']}";
+        $displayMapURL         = "search-results-map.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&latitute={$displayLatitude}&longitude={$displayLongitude}&mapurl={$value['mapurl']}";
+        $redirectCallMeBackURL = "call-me-back.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}";
     }
     
 ?>
@@ -367,9 +367,7 @@
 
                     <!--HOLLARD CALL DIRECT NUMBER-->
                     <div class="sidebar-module">
-                        <!-- <h3 class="universal-number"><a href="tel:0800601016" onClick="firePixelOnTelNrClick();" >Or call us: 0800 601 016</a></h3> -->
-                        <!-- <div id="test_call"><h3 class="universal-number"><a href="tel:0800601016">Or call us: 0800 601 016</a></h3></div> -->
-                        <h3 class="universal-number"><a href="tel:0800601016" id="test_call" onClick="firePixelOnTelNrClick()" >Or call us: 0800 601 016</a></h3>
+                        <a href="click-to-call.html" target="_blank" class="ph-glyph"><h3 class="universal-number"><span class="glyphicon glyphicon-phone-alt"></span> Or call us directly!</h3></a>
                     </div>
 
                 </div><!-- /.branch-sidebar -->
@@ -382,43 +380,30 @@
         <footer class="branch-footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-4 col-sm-push-8 branch-footer-social">
+                    <div class="col-sm-4">
+                        <p>
+                            Two Mountains Holdings &copy; 2017 <span style="color:#fff;">- FSP: 8706</span>
+                        </p>
+                    </div>
+                    <div class="col-sm-3 col-sm-push-5 branch-footer-social">
                         <ul class="nav-social">
                             <li class="nav-social--facebook">
-                                <a href="https://www.facebook.com/HollardInsurance/?fref=ts" target="_blank"><i class="icon--facebook">&nbsp;</i></a>
-                            </li>
-                            <li class="nav-social--linkedin">
-                                <a href="https://www.linkedin.com/company/hollard-insurance" target="_blank"><i class="icon--linkedin">&nbsp;</i></a>
-                            </li>
+                                <a href="http://www.facebook.com/TwoMountainsZA" target="_blank"><i class="icon--facebook">
+                                        &nbsp;</i></a></li>
                             <li class="nav-social--twitter">
-                                <a href="https://twitter.com/Hollard?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank"><i class="icon--twitter">&nbsp;</i></a>
-                            </li>
-                            <li class="nav-social--googleplus">
-                                <a href="https://plus.google.com/u/0/+HollardInsurance" target="_blank"><i class="icon--googleplus">&nbsp;</i></a>
-                            </li>
-                            <li class="nav-social--instagram">
-                                <a href="https://www.instagram.com/hollardgram/?hl=en" target="_blank"><i class="icon--instagram">&nbsp;</i></a>
-                            </li>
+                                <a href="http://www.twitter.com/TwoMountainsZA" target="_blank"><i class="icon--twitter">
+                                        &nbsp;</i></a></li>
                         </ul>
                     </div>
                 </div>
-            </div>
-            
-            <div class="container">
                 <div class="row">
-                    <p>
-                        The Hollard Insurance Company Ltd (Reg No. 1952/003004/06) is an authorised Financial Services Provider, and a member of the South African Insurance Association (SAIA).<br>
-                        Hollard Life Assurance Company (Reg. No. 1993/001405/06) is an authorised Financial Services Provider and a member of the Association for Savings and Investment South Africa (ASISA).<br> 
-                        Hollard Investment Managers (Reg. No. 1997/001696/07) is an authorised Financial Services Provider, operates as an investment manager and is a member of the Association for Savings and Investment South Africa (ASISA).<br>
-                        <br>
-                        Hollard is committed to high ethical standards of business. Hollard subscribes to the Ombudsman for Short-Term Insurance and the Ombudsman for Long-Term Insurance, and is subject to the jurisdiction of the FAIS Ombud. <br>
-                        <br>
-                        Hollard has developed and publicises its own Financial Crime Risk Management Policy as well as policies in support of the aims of the 
-                        Anti Money-Laundering Act and the Corrupt Activities Act.
-                    </p>
-                    <p>
-                        &copy; Copyright 2016 Hollard 
-                    </p>
+                    <div class="col-sm-3 col-sm-push-8">
+                        <p><span style="font-size: 0.8em;">Underwritten by:</span></p>
+                        <ul class="underlogo">
+                            <li class="underwritten-logo">
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </footer>

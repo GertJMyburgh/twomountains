@@ -16,6 +16,61 @@
     }
 ?>
 
+<?php
+
+// Include Branch_api class
+require_once("branch_api.php");
+
+// Get a handle/reference to the Branch API
+$branch_api = new Branch_api();
+
+$myProvince = "";
+$myCity     = "";
+
+// Get the branch, manager, address and google mapurl of the selected city belonging to the selected province
+if ($_POST) {
+    $myProvince = $_POST['province_placeholder'];
+    $myCity     = $_POST['city_placeholder'];
+} else {
+    if ($_GET) {
+        if (trim($myProvince) == "") {
+            $myProvince = trim($_GET['prov']);
+            $myProvince = str_replace("_", " ", $myProvince);
+        }
+
+        if (trim($myCity) == "") {
+            $myCity = trim($_GET['city']);
+            $myCity = str_replace("_", " ", $myCity);
+        }
+    }
+}
+
+$displayProvince  = "";
+$displayCity      = "";
+$displayBranch    = "";
+$displayManager   = "";
+$displayLatitude  = "";
+$displayLongitude = "";
+$displayAddress   = "";
+$displayMapURL    = "";
+
+$info = $branch_api->getCityInfo($myProvince, $myCity);
+
+// Display the info
+foreach ($info as $key => $value) {
+    $displayProvince       = $value['province'];
+    $displayCity           = $value['city'];
+    $displayBranch         = $value['branch'];
+    $displayManager        = $value['manager'];
+    $displayLatitude       = $value['latitude'];
+    $displayLongitude      = $value['longitute'];
+    $displayAddress        = $value['address'];
+    $displayMapURL         = "search-results-map.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&mapurl={$value['mapurl']}";
+    $redirectCallMeBackURL = "call-me-back.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&mapurl={$value['mapurl']}";
+}
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -33,82 +88,191 @@
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <!-- <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
-
-        <!-- Custom styles for this template -->
-        <link href="css/main.css" rel="stylesheet">
-
         <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-        <!-- <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
+        <!--[if lt IE 9]>
+        <script src="../../assets/js/ie8-responsive-file-warning.js"></script>
+        <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+        [endif]-->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <!--[endif]-->
-        
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        
+
         <script type="text/javascript">
-            
-            // <![CDATA[           
-            function firePixelOnTelNrClick() {
-				
-		// alert("PROD - firePixelOnTelNrClick");
-		// e.preventDefault();
-				
-                // Google Code for Navigate Conversion Page
-                // var google_conversion_id        = 874349905;
-                // var google_conversion_language  = "en";
-                // var google_conversion_format    = "3";
-                // var google_conversion_color     = "ffffff";
-                // var google_conversion_label     = "9ePHCPnN8WkQ0Yr2oAM";
-                // var google_remarketing_only     = false;
 
-                var image = new Image(1,1); 
-                image.src = "//www.googleadservices.com/pagead/conversion/874349905/?label=9ePHCPnN8WkQ0Yr2oAM&amp;guid=ON&amp;script=0";
-           
-                // alert ("index - BB");
-                // window.open("exe_analytics.html?value=index_TEL");
-                // alert ("index - CC");
-				
-		console.log("PROD AA *************************** firePixelOnTelNrClick");
-                
-                // $.get("test_analytics.asp", function(data, status) {
-                //    alert("Data: " + data + "\nStatus: " + status);
-                // });
-                
-                // Victor Geldenhuys from Thrive Online has registered these 2 values on Google Console
-                // 1. value=search_TEL
-                // 2. value=search_URL
+            // <![CDATA[
+            function trimWhiteSpacesAll(str) {
+                return str.replace(/\s/g, "");
+            }
 
-                // Ajax form 
-                $.post('tel_analytics.php', $(this).serialize())                
-                .done( function ( data ) {
-                    var json = $.parseJSON(data);
-                    console.log("PROD BB *************************** data: " + json);
-                    alert("json: " + json);
-                    // console.log("Lead: " + json.lead);
-                })                
-                .fail( function () {
-                    console.log( 'PROD CC *************************** Ajax Submit Failed ...' );
-                });				
-                
+            function trimWhiteSpacesLeftRight(str) {
+                str = str.replace(/^\s+/, '');
+                for (var i = str.length - 1; i >= 0; i--) {
+                    if (/\S/.test(str.charAt(i))) {
+                        str = str.substring(0, i + 1);
+                        break;
+                    }
+                }
+                return str;
+            }
+
+            function getURL() {
+                var url;
+                url = parent.document.location.href;
+                //alert("this is the parent url "+url);
+                document.getElementById('urlPathName').value = url;
+            }
+
+            function validateForm() {
+                var a = document.forms["Form1"]["name"].value;
+                var c = document.forms["Form1"]["phoneNumber"].value;
+                var d = document.forms["Form1"]["products"].value;
+
+                // Strip any spaces in front or at the back
+                a = trimWhiteSpacesLeftRight(a);
+                document.forms["Form1"]["name"].value = a;
+                c = trimWhiteSpacesAll(c);
+                if (isIntegerNumber(c) == false) {
+                    c = document.forms["Form1"]["phoneNumber"].value;
+                    c = trimWhiteSpacesLeftRight(c);
+                }
+                document.forms["Form1"]["phoneNumber"].value = c;
+
+                if (a=="My Name" || a=="") {
+                    alert("Please enter at least your name.");
+                    document.forms["Form1"]["name"].focus();
+                    return false;
+                }
+
+                if (isAlphaCharacters(a) == false) {
+                    alert("Do not use any special characters in the 'Name' field. Only alphabetic characters please.");
+                    document.forms["Form1"]["name"].focus();
+                    return false;
+                }
+
+                if (c.length<10 || isIntegerNumber(c) == false) {
+                    alert("Please enter a phone number of at least 10 numeric digits (no other characters) ie 0210000000 or 082000000");
+                    document.forms["Form1"]["phoneNumber"].focus();
+                    return false;
+                }
+
+                if (c.charAt(0) != 0) {
+                    alert("The 'Phone Number' may only start with the numeric digit 0 (e.g. 021 or 074 etc.)");
+                    document.forms["Form1"]["phoneNumber"].focus();
+                    return false;
+                }
+
+                if (d=="SelectProduct" || d=="") {
+                    alert("Please select a product from the dropdown list.");
+                    document.forms["Form1"]["products"].focus();
+                    return false;
+                }
+            }
+
+            function CalcKeyCode(aChar) {
+                var character = aChar.substring(0,1);
+                var code = aChar.charCodeAt(0);
+                return code;
+            }
+
+            function checkNumber(val) {
+                var strPass   = val.value;
+                var strLength = strPass.length;
+                var lchar     = val.value.charAt((strLength) - 1);
+                var cCode     = CalcKeyCode(lchar);
+
+                /* Check if the keyed in character is a number
+                 do you want alphabetic UPPERCASE only ?
+                 or lower case only just check their respective
+                 codes and replace the 48 and 57
+                 */
+
+                if (cCode < 48 || cCode > 57 ) {
+                    var myNumber = val.value.substring(0, (strLength) - 1);
+                    val.value = myNumber;
+                }
+
+                return false;
+            }
+
+            function checkFieldOnBlur(val) {
+                val.value = trimWhiteSpacesLeftRight(val.value);
+                if (val.value == "") {
+                    switch(val.name) {
+                        case 'name':
+                            val.value = "My Name";
+                            break;
+                        case 'phoneNumber':
+                            val.value = "My Number";
+                            break;
+                        default:
+                            val.value = "SelectProduct";
+                    }
+                }
+
+                return val.value;
+            }
+
+            function cleanFieldOnFocus(val) {
+                val.value = trimWhiteSpacesLeftRight(val.value);
+                if (val.value == "My Name" || val.value == "My Number" || val.value == "MyNumber" || val.value == "SelectProduct") {
+                    val.value = "";
+                }
+
+                return val.value;
+            }
+
+            function isInteger(s) {
+                var i;
+                for (i = 0; i < s.length; i++){
+                    // Check that current character is number.
+                    var c = s.charAt(i);
+                    if (((c < "0") || (c > "9"))) return false;
+                }
+                // All characters are numbers.
+
                 return true;
             }
 
-            // $("#test_call").on("click", firePixelOnTelNrClick);
-            
-            // $("#test_call").on("click", firePixelOnTelNrClick);
-            
-            // $("#test_call").click(function() {
-            //  firePixelOnTelNrClick();
-            // });
-                       
-            //]]>
-            
+            function isIntegerNumber(x) {
+                var numbers = /^[-+]?[0-9]+$/;
+
+                if (x.match(numbers)) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+
+            function isAlphaCharacters(x) {
+                var characters = /^[a-zA-Z ]+$/;
+
+                if (x.match(characters)) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+
+            function stripCharsInBag(s, bag) {
+                var i;
+                var returnString = "";
+                // Search through string's characters one by one.
+                // If character is not in bag, append to returnString.
+                for (i = 0; i < s.length; i++) {
+                    var c = s.charAt(i);
+                    if (bag.indexOf(c) == -1) returnString += c;
+                }
+
+                return returnString;
+            }
+
         </script>
 
     </head>
@@ -127,24 +291,24 @@
             ga('send', 'pageview');
         </script>
 
-        <!-- Tag for Call Me – must fire when a customer has successfully requested a “call me back” -->
-        <!-- Google Code for Call Me Conversion Page -->
+        <!-- Tag for Call Me Back – must fire when a customer has successfully requested a “call me back” -->
+        <!-- Google Code for Call Me Back Conversion Page -->
         <script type="text/javascript">
             /* <![CDATA[ */
-            var google_conversion_id = 874349905;
+            var google_conversion_id = 861406385;
             var google_conversion_language = "en";
             var google_conversion_format = "3";
             var google_conversion_color = "ffffff";
-            var google_conversion_label = "3Y3ZCKyd-GkQ0Yr2oAM";
+            var google_conversion_label = "Qh35CNL_9G0QsYngmgM";
             var google_remarketing_only = false;
             /* ]]> */
         </script>
-        
+
         <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
-        
+
         <noscript>
             <div style="display:inline;">
-                <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/874349905/?label=3Y3ZCKyd-GkQ0Yr2oAM&amp;guid=ON&amp;script=0"/>
+                <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/861406385/?label=Qh35CNL_9G0QsYngmgM&amp;guid=ON&amp;script=0"/>
             </div>
         </noscript>
 
