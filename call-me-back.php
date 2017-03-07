@@ -154,10 +154,17 @@
                 </div>
             </div>
 
-            <span style="color:white; font-size: 150%;"><strong>If you are a government employee, Hollard can now conveniently deduct payments from your salary</strong></span>
+            <!--
+            <div style="text-align: center">
+                <span style="color: white; font-size: 150%><strong>If you are a government employee, Hollard can now conveniently deduct payments from your salary</strong></span>
+            </div>
+            -->
 
             <div class="container">
                 <div class="row">
+                    <p>
+                        <span style="color: white; font-size: 150%;"><strong>If you are a government employee, Hollard can now conveniently deduct payments from your salary</strong></span>
+                    </p>
                     <p>
                         The Hollard Insurance Company Ltd (Reg No. 1952/003004/06) is an authorised Financial Services Provider, and a member of the South African Insurance Association (SAIA).<br>
                         Hollard Life Assurance Company (Reg. No. 1993/001405/06) is an authorised Financial Services Provider and a member of the Association for Savings and Investment South Africa (ASISA).<br>

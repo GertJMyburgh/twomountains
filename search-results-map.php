@@ -47,7 +47,7 @@ foreach ($info as $key => $value) {
     $displayLatitude       = $value['latitude'];
     $displayLongitude      = $value['longitute'];
     $displayAddress        = $value['address'];
-    $displayMapURL         = "search-results-map.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&mapurl={$value['mapurl']}";
+    $displayMapURL         = $value['mapurl'];
     $redirectCallMeBackURL = "call-me-back.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&mapurl={$value['mapurl']}";
 
     $myProvince = trim($_GET['province']);
@@ -271,27 +271,12 @@ foreach ($info as $key => $value) {
 
         </script>
 
-        <!-- START BRANCH DATA
-          Province = Free State
-          City = Bloemfontein-Botshabelo
-          Branch = Botshabelo
-          Manager = Unknown
-          Latitude = -29.0000000
-          Longitute = 26.0000000
-          Address = Shop 19 RCM Shopping Complex Strand St Botshabelo FS
-          mapurl = https://goo.gl/maps/GBhmm15vW7H2
-          center: new google.maps.LatLng(-29.0000000, 26.0000000),
-          center: new google.maps.LatLng(38.9419, -78.3020),
-          center: new google.maps.url("https://goo.gl/maps/GBhmm15vW7H2"),
-          center: new google.maps.url("http://maps.google.com/maps?z=12&t=m&q=loc:38.9419+-78.3020"),
-        END BRANCH DATA -->
-
         <script>
 
             function initMap() {
                 var mapProperties = {
                     center: new google.maps.LatLng(<?php print $displayLatitude;?>, <?php print $displayLongitude;?>),
-                    zoom: 8,
+                    zoom: 18,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
 
@@ -302,7 +287,6 @@ foreach ($info as $key => $value) {
 
         </script>
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALKLHmQpaY_wNrRsbZEPMHiDmGN5IlNnQ&callback=initMap" async defer></script>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
@@ -373,7 +357,7 @@ foreach ($info as $key => $value) {
                                 <dt>Branch Manager: </dt>
                                 <dd><?php print $displayManager;?></dd>
                             </dl>
-                            <p><a href="<?php print $displayMapURL;?>" class="search-results-maplink">See Map</a></p>
+                            <p><a href="<?php print $displayMapURL;?>" class="search-results-maplink">open with google maps</a></p>
                         </div>
                     </div>
 
@@ -387,7 +371,6 @@ foreach ($info as $key => $value) {
                 </div>
 
                 <!--RIGHT SIDEBAR INCLUDING CALL-BACK FORM-->
-
                 <div class="col-sm-4 col-sm-offset-2 branch-sidebar">
                     <div class="sidebar-module sidebar-module-inset sidebar">
                         <h2>Rather call me back please</h2>
@@ -425,18 +408,12 @@ foreach ($info as $key => $value) {
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4">
-                        <p>
-                            Two Mountains Holdings &copy; 2017 <span style="color:#fff;">- FSP: 8706</span>
-                        </p>
+                        <p>Two Mountains Holdings &copy; 2017 <span style="color:#fff;">- FSP: 8706</span></p>
                     </div>
                     <div class="col-sm-3 col-sm-push-5 branch-footer-social">
                         <ul class="nav-social">
-                            <li class="nav-social--facebook">
-                                <a href="http://www.facebook.com/TwoMountainsZA" target="_blank"><i class="icon--facebook">
-                                    &nbsp;</i></a></li>
-                            <li class="nav-social--twitter">
-                                <a href="http://www.twitter.com/TwoMountainsZA" target="_blank"><i class="icon--twitter">
-                                    &nbsp;</i></a></li>
+                            <li class="nav-social--facebook"><a href="http://www.facebook.com/TwoMountainsZA" target="_blank"><i class="icon--facebook">&nbsp;</i></a></li>
+                            <li class="nav-social--twitter"><a href="http://www.twitter.com/TwoMountainsZA" target="_blank"><i class="icon--twitter">&nbsp;</i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -444,13 +421,11 @@ foreach ($info as $key => $value) {
                     <div class="col-sm-3 col-sm-push-8">
                         <p><span style="font-size: 0.8em;">Underwritten by:</span></p>
                         <ul class="underlogo">
-                            <li class="underwritten-logo">
-                            </li>
+                            <li class="underwritten-logo"></li>
                         </ul>
                     </div>
                 </div>
             </div>
-
         </footer>
 
         <!-- Bootstrap core JavaScript
@@ -461,8 +436,9 @@ foreach ($info as $key => $value) {
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug
         <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
         -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALKLHmQpaY_wNrRsbZEPMHiDmGN5IlNnQ&callback=initMap" async defer></script>
 
-        <script src="http://maps.googleapis.com/maps/api/js"></script>
+        <!--<script src="http://maps.googleapis.com/maps/api/js"></script>-->
 
     </body>
 </html>

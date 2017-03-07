@@ -16,7 +16,7 @@
     } else {    
         if ($_GET) {
             if (trim($myProvince) == "") {
-                $myProvince = trim($_GET['prov']);
+                $myProvince = trim($_GET['province']);
                 $myProvince = str_replace("_", " ", $myProvince);
             }
 
@@ -24,6 +24,8 @@
                 $myCity = trim($_GET['city']);
                 $myCity = str_replace("_", " ", $myCity);
             }
+            $myBranch   = trim($_GET['branch']);
+            $myMapURL   = trim($_GET['mapurl']);
         }
     }
             
@@ -48,15 +50,7 @@
         $displayLongitude      = $value['longitute'];
         $displayAddress        = $value['address'];
         $displayMapURL         = "search-results-map.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}&latitute={$displayLatitude}&longitude={$displayLongitude}&mapurl={$value['mapurl']}";
-        $redirectCallMeBackURL = "call-me-back.php?province={$displayProvince}&city={$displayCity}&branch={$displayBranch}";
     }
-
-    $myProvince = trim($_GET['province']);
-    $myProvince = str_replace("_", " ", $myProvince);
-    $myCity     = trim($_GET['city']);
-    $myCity     = str_replace("_", " ", $myCity);
-    $myBranch   = trim($_GET['branch']);
-    $myMapURL   = trim($_GET['mapurl']);
 
 ?>
 
@@ -364,7 +358,6 @@
                                 <input type="submit" class=" sidebar-btn" id="please-call-me" value="Please Call Me!"/>
                             </div>
                         </form>
-                        
                     </div>
 
                     <!--HOLLARD CALL DIRECT NUMBER-->
@@ -383,18 +376,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4">
-                        <p>
-                            Two Mountains Holdings &copy; 2017 <span style="color:#fff;">- FSP: 8706</span>
-                        </p>
+                        <p>Two Mountains Holdings &copy; 2017 <span style="color:#fff;">- FSP: 8706</span></p>
                     </div>
                     <div class="col-sm-3 col-sm-push-5 branch-footer-social">
                         <ul class="nav-social">
-                            <li class="nav-social--facebook">
-                                <a href="http://www.facebook.com/TwoMountainsZA" target="_blank"><i class="icon--facebook">
-                                        &nbsp;</i></a></li>
-                            <li class="nav-social--twitter">
-                                <a href="http://www.twitter.com/TwoMountainsZA" target="_blank"><i class="icon--twitter">
-                                        &nbsp;</i></a></li>
+                            <li class="nav-social--facebook"><a href="http://www.facebook.com/TwoMountainsZA" target="_blank"><i class="icon--facebook">&nbsp;</i></a></li>
+                            <li class="nav-social--twitter"><a href="http://www.twitter.com/TwoMountainsZA" target="_blank"><i class="icon--twitter">&nbsp;</i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -402,8 +389,7 @@
                     <div class="col-sm-3 col-sm-push-8">
                         <p><span style="font-size: 0.8em;">Underwritten by:</span></p>
                         <ul class="underlogo">
-                            <li class="underwritten-logo">
-                            </li>
+                            <li class="underwritten-logo"></li>
                         </ul>
                     </div>
                 </div>
