@@ -29,10 +29,16 @@
         <meta name="author" content="">
         <link rel="icon" href="images/favicon.ico">
 
-        <title>Hollard Branch Locator</title>
+        <title>Two Mountains Branch Locator - Call Me Back</title>
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <!-- <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+
+        <!-- Custom styles for this template -->
+        <link href="css/main.css" rel="stylesheet">
 
         <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
         <!--[if lt IE 9]>
@@ -47,109 +53,6 @@
         <![endif]-->
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-        <script type="text/javascript">
-
-            // <![CDATA[
-            function trimWhiteSpacesAll(str) {
-                return str.replace(/\s/g, "");
-            }
-
-            function trimWhiteSpacesLeftRight(str) {
-                str = str.replace(/^\s+/, '');
-                for (var i = str.length - 1; i >= 0; i--) {
-                    if (/\S/.test(str.charAt(i))) {
-                        str = str.substring(0, i + 1);
-                        break;
-                    }
-                }
-                return str;
-            }
-
-            function getURL() {
-                var url;
-                url = parent.document.location.href;
-                //alert("this is the parent url "+url);
-                document.getElementById('urlPathName').value = url;
-            }
-
-            function validateForm() {
-            }
-
-            function CalcKeyCode(aChar) {
-                var character = aChar.substring(0,1);
-                var code = aChar.charCodeAt(0);
-                return code;
-            }
-
-            function checkNumber(val) {
-                var strPass   = val.value;
-                var strLength = strPass.length;
-                var lchar     = val.value.charAt((strLength) - 1);
-                var cCode     = CalcKeyCode(lchar);
-
-                /* Check if the keyed in character is a number
-                 do you want alphabetic UPPERCASE only ?
-                 or lower case only just check their respective
-                 codes and replace the 48 and 57
-                 */
-
-                if (cCode < 48 || cCode > 57 ) {
-                    var myNumber = val.value.substring(0, (strLength) - 1);
-                    val.value = myNumber;
-                }
-
-                return false;
-            }
-
-            function isInteger(s) {
-                var i;
-                for (i = 0; i < s.length; i++){
-                    // Check that current character is number.
-                    var c = s.charAt(i);
-                    if (((c < "0") || (c > "9"))) return false;
-                }
-                // All characters are numbers.
-
-                return true;
-            }
-
-            function isIntegerNumber(x) {
-                var numbers = /^[-+]?[0-9]+$/;
-
-                if (x.match(numbers)) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
-
-            function isAlphaCharacters(x) {
-                var characters = /^[a-zA-Z ]+$/;
-
-                if (x.match(characters)) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
-
-            function stripCharsInBag(s, bag) {
-                var i;
-                var returnString = "";
-                // Search through string's characters one by one.
-                // If character is not in bag, append to returnString.
-                for (i = 0; i < s.length; i++) {
-                    var c = s.charAt(i);
-                    if (bag.indexOf(c) == -1) returnString += c;
-                }
-
-                return returnString;
-            }
-
-        </script>
 
     </head>
 
@@ -213,15 +116,17 @@
         </div>
 
         <div class="container">
-        <div class="row">
-            <!--MAIN CONTENT SECTION ON LEFT INCLUDING BRANCHES SEARCH FORM-->
-            <div class="col-lg-10 branch-header branch-title">
-                <h2 class="branch-subheading">Thank you for submitting your contact details. One of our agents will be in contact soon.</h2>
-                <br />
-                <!--HOLLARD CALL DIRECT NUMBER-->
-                <a href="click-to-call.html" target="_blank" class="ph-glyph"><h3 class="universal-number"><span class="glyphicon glyphicon-phone-alt"></span> Or call us directly!</h3></a>
-            </div>
-        </div><!-- /.container -->
+
+            <div class="row">
+                <!--MAIN CONTENT SECTION ON LEFT INCLUDING BRANCHES SEARCH FORM-->
+                <div class="col-lg-10 branch-header branch-title">
+                    <h2 class="branch-subheading">Thank you for submitting your contact details. One of our agents will be in contact soon.</h2>
+                    <br />
+                    <!--HOLLARD CALL DIRECT NUMBER-->
+                    <a href="click-to-call.html" target="_blank" class="ph-glyph"><h3 class="universal-number-thankyou"><span class="glyphicon glyphicon-phone-alt"></span> Or call us directly!</h3></a>
+                </div>
+            </div><!-- /.container -->
+        </div>
 
         <!--FOOTER-->
         <footer class="branch-footer">
@@ -248,27 +153,26 @@
                     </div>
                 </div>
             </div>
-            
+
             <span style="color:white; font-size: 150%;"><strong>If you are a government employee, Hollard can now conveniently deduct payments from your salary</strong></span>
 
             <div class="container">
                 <div class="row">
                     <p>
                         The Hollard Insurance Company Ltd (Reg No. 1952/003004/06) is an authorised Financial Services Provider, and a member of the South African Insurance Association (SAIA).<br>
-                        Hollard Life Assurance Company (Reg. No. 1993/001405/06) is an authorised Financial Services Provider and a member of the Association for Savings and Investment South Africa (ASISA).<br> 
+                        Hollard Life Assurance Company (Reg. No. 1993/001405/06) is an authorised Financial Services Provider and a member of the Association for Savings and Investment South Africa (ASISA).<br>
                         Hollard Investment Managers (Reg. No. 1997/001696/07) is an authorised Financial Services Provider, operates as an investment manager and is a member of the Association for Savings and Investment South Africa (ASISA).<br>
                         <br>
                         Hollard is committed to high ethical standards of business. Hollard subscribes to the Ombudsman for Short-Term Insurance and the Ombudsman for Long-Term Insurance, and is subject to the jurisdiction of the FAIS Ombud. <br>
                         <br>
-                        Hollard has developed and publicises its own Financial Crime Risk Management Policy as well as policies in support of the aims of the 
+                        Hollard has developed and publicises its own Financial Crime Risk Management Policy as well as policies in support of the aims of the
                         Anti Money-Laundering Act and the Corrupt Activities Act.
                     </p>
                     <p>
-                        &copy; Copyright 2016 Hollard 
+                        &copy; Copyright 2016 Hollard
                     </p>
                 </div>
             </div>
-            
         </footer>
 
         <!-- Bootstrap core JavaScript
@@ -281,4 +185,5 @@
         <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
         
     </body>
+
 </html>
