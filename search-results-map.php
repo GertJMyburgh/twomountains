@@ -274,13 +274,21 @@ foreach ($info as $key => $value) {
         <script>
 
             function initMap() {
+                var myLatLng = {lat: <?php print $displayLatitude ;?>, lng: <?php print $displayLongitude ;?>};
+
                 var mapProperties = {
-                    center: new google.maps.LatLng(<?php print $displayLatitude;?>, <?php print $displayLongitude;?>),
+                    center: new google.maps.LatLng(<?php print $displayLatitude ;?>, <?php print $displayLongitude ;?>),
                     zoom: 18,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
 
                 var map = new google.maps.Map(document.getElementById("googleMap"), mapProperties);
+
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    title: '<?php print $displayBranch ;?>'
+                });
             }
 
             google.maps.event.addDomListener(window, 'load', initMap);
