@@ -379,6 +379,17 @@
 
                 <!--RIGHT SIDEBAR INCLUDING CALL-BACK FORM-->
                 <div class="col-sm-4 col-sm-offset-2 branch-sidebar">
+
+                    <div class="sidebar-module sidebar-module-list sidebar">
+                        <h3>Our Funeral Plan Includes:</h3>
+                        <ul>
+                            <li>Up to R50 000 pay out for burial expenses. </li>
+                            <li>Additional R1000 monthly pay out for six months to the beneficiary to cover basic living expenses after the burial. </li>
+                            <li>R200 airtime. </li>
+                            <li>Pays out within 24 hours. </li>
+                        </ul>
+                    </div>
+
                     <div class="sidebar-module sidebar-module-inset sidebar">
                         <h2>Rather call me back please</h2>
 

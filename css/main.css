@@ -45,11 +45,11 @@ h6, .h6 {
   color: #666666;
 }
 
-h2, .h2 {
+h2, .h2, {
 	font-size: 19px;
 }
 
-h3, .h3 {
+h3, .h3, {
 	font-size: 16px;
 }
 
@@ -84,7 +84,7 @@ h3, .h3 {
 	background-color: transparent;
 	color: #fff;
 	float:right;
-    vertical-align: middle;	
+    vertical-align: middle;
 	margin-top: 3px;
     height: 20px;
     width: 20px;
@@ -93,7 +93,7 @@ h3, .h3 {
 
 .logo-masthead {
     background-color: #fff;
-	min-height: 90px;
+	min-height: 140px;
 	border-bottom: #141414 solid 5px;
   /*-webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
           box-shadow: inset 0 -2px 5px rgba(0,0,0,.1); */
@@ -113,7 +113,7 @@ nav ul {
 
 .nav-main__logo {
     float: left;
-    padding: 10px 0 10px 0;
+    padding: 20px 0 20px 0;
 	width: 20%;
 	margin: 2px;
     list-style: none;
@@ -177,7 +177,7 @@ nav ul {
   border-radius: 3px;
 }
 .branch-form-btn:hover {
-	color: #1d3632;	
+	color: #1d3632;
 }
 .branch-form-select {
 	min-width: 260px;
@@ -260,7 +260,7 @@ nav ul {
   border-radius: 3px;
 }
 .map-form-btn:hover {
-	color: #1d3632;	
+	color: #1d3632;
 }
 
 
@@ -285,17 +285,41 @@ nav ul {
 .sidebar-module-inset ol:last-child {
   margin-bottom: 0;
 }
+.sidebar-module-list {
+  padding: 5px 15px 12px 0 ;
+  background-color: #a5af7a;
+  color: #666;
+  border-top: solid 3px #1e3632;
+  border-bottom: solid 3px #1e3632;
+}
+.sidebar-module-list ul {
+	margin-left: -10px;
+}
+.sidebar-module-list li {
+	color: #333;
+}
+.sidebar-module-list p:last-child,
+.sidebar-module-list ul:last-child,
+.sidebar-module-list ol:last-child {
+  margin-bottom: 5;
+}
 .sidebar {
-	margin-top: 3px;
+	margin-top: 3;
 	font-family: 'OpenSans-Regular', Verdana, Geneva, sans-serif;
  	font-weight: normal;
-	color: #fff;		
+	color: #fff;
 }
 .sidebar h2 {
 	color: #FFF;
 	font-weight: lighter;
 	padding-bottom: 10px;
 	font-size: 24px;
+}
+.sidebar h3 {
+	color: #FFF;
+	font-weight: bold;
+	padding : 12px;
+	font-size: 19px;
 }
 .sidebar-form {
 	background-color: #1e3632;
@@ -336,17 +360,10 @@ nav ul {
 .sidebar-btn:hover {
 	background-color: #cbcfbc;
 }
-
-.universal-number {
-    color: #1e3632;
-    text-align:center;
-    font-size: 18px;
-}
-
-.universal-number-thankyou {
-    color: #1e3632;
-    text-align: left;
-    font-size: 18px;
+.universal-number{
+	color: #1e3632;
+	text-align:center;
+	font-size: 18px;
 }
 
 .ph-glyph:hover {
@@ -394,7 +411,7 @@ nav ul {
 
 .underwritten-logo {
     background-color: transparent;
-    background-image: url(../images/logo_liberty.png);
+    background-image: url(../images/Hollard_Logo_White-Orange_Dot_RGB.png);
     background-repeat: no-repeat;
     text-align: left;
     overflow: hidden;
@@ -402,8 +419,8 @@ nav ul {
     display: inline-block;
     vertical-align: middle;
     color: transparent;
-    height: 105px;
-    width: 240px;
+    height: 64px;
+    width: 243px;
 	left: 0;
 }
 
@@ -424,7 +441,7 @@ nav-social {
     float: left;
     height: 40px;
     margin-left: 10px;
-    padding-top:0;	
+    padding-top:0;
 }
 .icon--facebook {
     background-color: transparent;
@@ -433,21 +450,21 @@ nav-social {
     overflow: hidden;
     white-space: nowrap;
     display: inline-block;
-    vertical-align: middle;	
-    color: transparent;	
+    vertical-align: middle;
+    color: transparent;
     height: 32px;
     width: 32px;
     background-position: -40px -80px;
 }
 .icon--linkedin {
     background-color: transparent;
- 	background-image: url(../images/sprite.svg); 	
+ 	background-image: url(../images/sprite.svg); 
 	 	background-repeat: no-repeat;
     overflow: hidden;
     white-space: nowrap;
     display: inline-block;
-    vertical-align: middle;	
-    color: transparent;			
+    vertical-align: middle;
+    color: transparent;
     height: 32px;
     width: 32px;
     background-position: -160px -80px;
@@ -455,12 +472,12 @@ nav-social {
 .icon--twitter {
     background-color: transparent;
  	background-image: url(../images/sprite.svg); 
- 	background-repeat: no-repeat;	
+ 	background-repeat: no-repeat;
     overflow: hidden;
     white-space: nowrap;
     display: inline-block;
-    vertical-align: middle;	
-    color: transparent;			
+    vertical-align: middle;
+    color: transparent;
     height: 32px;
     width: 32px;
     background-position: 0 -80px;
@@ -472,21 +489,21 @@ nav-social {
     overflow: hidden;
     white-space: nowrap;
     display: inline-block;
-    vertical-align: middle;	
-    color: transparent;				
+    vertical-align: middle;
+    color: transparent;
     height: 32px;
     width: 32px;
     background-position: -80px -80px;
 }
 .icon--instagram {
     background-color: transparent;
- 	background-image: url(../images/sprite.svg); 	
- 	background-repeat: no-repeat;	
+ 	background-image: url(../images/sprite.svg); 
+ 	background-repeat: no-repeat;
     overflow: hidden;
     white-space: nowrap;
     display: inline-block;
-    vertical-align: middle;	
-    color: transparent;		
+    vertical-align: middle;
+    color: transparent;
     height: 32px;
     width: 32px;
     background-position: -120px -80px;
