@@ -131,6 +131,7 @@
         <!--FOOTER-->
         <footer class="branch-footer">
             <div class="container">
+
                 <div class="row">
                     <div class="col-sm-4 col-sm-push-8 branch-footer-social">
                         <ul class="nav-social">
@@ -152,21 +153,9 @@
                         </ul>
                     </div>
                 </div>
-            </div>
 
-            <!--
-            <div style="text-align: center">
-                <span style="color: white; font-size: 150%><strong>If you are a government employee, Hollard can now conveniently deduct payments from your salary</strong></span>
-            </div>
-            -->
-
-            <div class="container">
-                <div class="row">
-                    <p>
-                        <span style="color: white; font-size: 150%;"><strong>If you are a government employee, Hollard can now conveniently deduct payments from your salary</strong></span>
-                    </p>
-                    <p>
-                        The Hollard Insurance Company Ltd (Reg No. 1952/003004/06) is an authorised Financial Services Provider, and a member of the South African Insurance Association (SAIA).<br>
+                <div class="col-sm-7 col-sm-push-1">
+                    <p>The Hollard Insurance Company Ltd (Reg No. 1952/003004/06) is an authorised Financial Services Provider, and a member of the South African Insurance Association (SAIA).<br>
                         Hollard Life Assurance Company (Reg. No. 1993/001405/06) is an authorised Financial Services Provider and a member of the Association for Savings and Investment South Africa (ASISA).<br>
                         Hollard Investment Managers (Reg. No. 1997/001696/07) is an authorised Financial Services Provider, operates as an investment manager and is a member of the Association for Savings and Investment South Africa (ASISA).<br>
                         <br>
@@ -175,10 +164,8 @@
                         Hollard has developed and publicises its own Financial Crime Risk Management Policy as well as policies in support of the aims of the
                         Anti Money-Laundering Act and the Corrupt Activities Act.
                     </p>
-                    <p>
-                        &copy; Copyright 2016 Hollard
-                    </p>
                 </div>
+
             </div>
         </footer>
 

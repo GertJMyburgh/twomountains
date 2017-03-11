@@ -385,6 +385,7 @@
         <!--FOOTER-->
         <footer class="branch-footer">
             <div class="container">
+
                 <div class="row">
                     <div class="col-sm-4">
                         <p>Two Mountains Holdings &copy; 2017 <span style="color:#fff;">- FSP: 8706</span></p>
@@ -396,6 +397,7 @@
                         </ul>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-sm-3 col-sm-push-8">
                         <p><span style="font-size: 0.8em;">Underwritten by:</span></p>
@@ -404,6 +406,19 @@
                         </ul>
                     </div>
                 </div>
+
+                <div class="col-sm-7 col-sm-push-1">
+                    <p>The Hollard Insurance Company Ltd (Reg No. 1952/003004/06) is an authorised Financial Services Provider, and a member of the South African Insurance Association (SAIA).<br>
+                        Hollard Life Assurance Company (Reg. No. 1993/001405/06) is an authorised Financial Services Provider and a member of the Association for Savings and Investment South Africa (ASISA).<br>
+                        Hollard Investment Managers (Reg. No. 1997/001696/07) is an authorised Financial Services Provider, operates as an investment manager and is a member of the Association for Savings and Investment South Africa (ASISA).<br>
+                        <br>
+                        Hollard is committed to high ethical standards of business. Hollard subscribes to the Ombudsman for Short-Term Insurance and the Ombudsman for Long-Term Insurance, and is subject to the jurisdiction of the FAIS Ombud. <br>
+                        <br>
+                        Hollard has developed and publicises its own Financial Crime Risk Management Policy as well as policies in support of the aims of the
+                        Anti Money-Laundering Act and the Corrupt Activities Act.
+                    </p>
+                </div>
+
             </div>
         </footer>
 
